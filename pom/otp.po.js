@@ -1,4 +1,5 @@
 const requirement = require('playwright/test');
+const { test, expect } = require('@playwright/test');
 
 exports.otpPage = class otpPage {
   constructor(page) {
@@ -10,6 +11,7 @@ exports.otpPage = class otpPage {
     this.otpInput5 = `//input[@id=':r7:']`;
     this.otpInput6 = `//input[@id=':r8:']`;
     this.loginButton = `//button[@id=':r9:']`;
+    this.welcomeText = `//*[contains(text(), 'Welcome')]`;
   }
   async otpWrite(otp) {
     await this.page.fill(this.otpInput1, otp[0]);
@@ -19,6 +21,7 @@ exports.otpPage = class otpPage {
     await this.page.fill(this.otpInput5, otp[4]);
     await this.page.fill(this.otpInput6, otp[5]);
     await this.page.click(this.loginButton);
+    await this.page.waitForSelector(this.welcomeText);
   }
 
 }

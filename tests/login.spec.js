@@ -9,11 +9,11 @@ test.beforeEach(async ({ page }) => {
 });
 
 test.describe('Login tests', () => {
-    test('Login with valid credentials', async ({ page }) => {
-        const login = new loginPage(page);
-        await login.login(data.validCredential.email, data.validCredential.password); 
-        await page.waitForTimeout(10000);    
-    });
+    // test('Login with valid credentials', async ({ page }) => {
+    //     const login = new loginPage(page);
+    //     await login.login(data.validCredential.email, data.validCredential.password); 
+    //     // await page.waitForTimeout(10000);    
+    // });
     test('Write OTP', async ({ page }) => {
         const login = new loginPage(page);
         await login.login(data.validCredential.email, data.validCredential.password); 
@@ -21,6 +21,6 @@ test.describe('Login tests', () => {
         const otp = new otpPage(page);
         const otpPass = '000000'
         await otp.otpWrite(otpPass);
-        await page.waitForTimeout(10000);
+        // await page.waitForTimeout(10000);
     })
 })
