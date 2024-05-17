@@ -1,0 +1,4 @@
+{
+    "nonEmpty": "OTP cannot be empty",
+    "invalid": "Invalid OTP"
+}

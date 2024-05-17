@@ -1,0 +1,6 @@
+{
+    "nonEmpty": "Email cannot be empty",
+    "required": "Email is required",
+    "invalid": "Email must be a valid email address",
+    "notFound": "User not found"
+}

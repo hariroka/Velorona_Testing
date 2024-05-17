@@ -2,5 +2,12 @@
     "validCredential":{
         "email": "admin@clinchtech.com",
         "password": "P@$$W0Rd"
+    },
+    "invalidCredential":{
+        "email": "adminclinchtech.com"
+    },
+    "mismatchedCredential":{
+        "email": "admin@clinchtech.com",
+        "password": "P@ssW0Rd"
     }
 }
