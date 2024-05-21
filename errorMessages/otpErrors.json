@@ -1,4 +1,5 @@
 {
     "nonEmpty": "OTP cannot be empty",
+    "nonEmpty2": "Code must be at least 6 characters",
     "invalid": "Invalid OTP"
 }

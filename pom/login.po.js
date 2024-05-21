@@ -13,11 +13,15 @@ exports.loginPage = class loginPage {
     this.otpInput5 = `//input[@id=':r7:']`;
     this.otpInput6 = `//input[@id=':r8:']`;
     this.otpLoginButton = `//button[@id=':r9:']`;
-    this.forgetPassword = `//a[normalize-space()='Forgot password?']`;
+    this.forgotPassword = `//a[normalize-space()='Forgot password?']`;
   }
   async login(username, password) {
-    await this.page.fill(this.usernameInput, username);
-    await this.page.fill(this.passwordInput, password);
+    if (username != '') {
+      await this.page.fill(this.usernameInput, username);
+    }
+    if (password != '') {
+      await this.page.fill(this.passwordInput, password);
+    }
     await this.page.click(this.loginButton);
   }
   async otpWrite(otp) {
@@ -35,8 +39,8 @@ exports.loginPage = class loginPage {
   async select(message) {
     await this.page.waitForSelector(`//*[contains(text(), '` + message + `')]`);
   }
-  async forgetPass() {
-    await this.page.click(this.forgetPassword);
+  async forgotPass() {
+    await this.page.click(this.forgotPassword);
     await this.page.waitForSelector(`//*[contains(text(), 'Forgot your password?')]`);
   }
 }
