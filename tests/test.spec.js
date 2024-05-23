@@ -36,7 +36,15 @@ test.describe('Verify Invalid OTP', () => {
     })
     test('Register test', async ({ page }) => {
         const register = new registerPage(page);
-        await register.countrySelect();
+        // await register.countrySelect("Nepal");
+        await register.countrySelect("Barbados");
         // await page.waitForTimeout(2000);
+    })
+    test.only('Register tests', async ({ page }) => {
+        const register = new registerPage(page);
+        for (let i = 1; i <= 248; i++) {
+            await register.countrySelectAll(String(i));
+        }
+        // await register.countrySelectAll("2");
     })
 })
