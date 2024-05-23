@@ -16,6 +16,7 @@ exports.forgotPassPage = class forgotPassPage {
         this.passwordInput = `//input[@id=':r9:']`;
         this.confirmPasswordInput = `//input[@id=':ra:']`;   
         this.submitButton2 = `//button[@id=':rb:']`;
+        this.backToLogin = `//button[@id=':rc:']`;
      
     }
     async resetPassword(email, message) {
@@ -56,5 +57,15 @@ exports.forgotPassPage = class forgotPassPage {
     }
     async select(message) {
         await this.page.waitForSelector(`//*[contains(text(), '` + message + `')]`);
-      }
+    }
+    async isPasswordInputRed() {
+        const color = await this.page.$eval(this.passwordInput, el => {
+            return window.getComputedStyle(el).borderColor;
+        });
+        expect(color).toBe('rgb(33, 43, 54)'); // Do not use anchor CSS values in your tests
+    }
+    async back(){
+        await this.page.click(this.backToLogin);
+        await this.page.waitForSelector(`//*[contains(text(), 'User Login')]`);
+    }
 }

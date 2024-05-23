@@ -14,6 +14,8 @@ exports.loginPage = class loginPage {
     this.otpInput6 = `//input[@id=':r8:']`;
     this.otpLoginButton = `//button[@id=':r9:']`;
     this.forgotPassword = `//a[normalize-space()='Forgot password?']`;
+    this.register = `//a[normalize-space()='Register Now']`;
+    this.rememberMe = `//input[@name='rememberMe']`;
   }
   async login(username, password) {
     if (username != '') {
@@ -42,5 +44,19 @@ exports.loginPage = class loginPage {
   async forgotPass() {
     await this.page.click(this.forgotPassword);
     await this.page.waitForSelector(`//*[contains(text(), 'Forgot your password?')]`);
+  }
+  async registerNow() {
+    await this.page.click(this.register);
+    await this.page.waitForSelector(`//*[contains(text(), 'Company Register')]`);
+  }
+  async loginWithRememberMe(username, password) {
+    if (username != '') {
+      await this.page.fill(this.usernameInput, username);
+    }
+    if (password != '') {
+      await this.page.fill(this.passwordInput, password);
+    }
+    await this.page.click(this.rememberMe);
+    await this.page.click(this.loginButton);
   }
 }

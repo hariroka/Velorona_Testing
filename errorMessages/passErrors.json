@@ -1,3 +1,4 @@
 {
-    "required": "Password is required"
+    "required": "Password is required",
+    "missmatch": "Passwords must match"
 }

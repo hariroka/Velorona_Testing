@@ -1,13 +1,27 @@
 {
     "validCredential":{
         "email": "admin@clinchtech.com",
-        "password": "P@$$W0Rd"
+        "password": "P@$$W0Rd",
+        "newPassword": "P@$$W0Rd"
     },
     "invalidCredential":{
-        "email": "adminclinchtech.com"
+        "email": "adminclinchtech.com",
+        "password": "P@$$WoRd"
     },
     "mismatchedCredential":{
         "email": "admin@clinchtech.com",
         "password": "P@ssW0Rd"
+    },
+    "inactiveUser":{
+        "email": "approver@clinchtech.com",
+        "password": "bKEuGEiW"
+    },
+    "archivedUser":{
+        "email": "abc@clinchtech.com",
+        "password": "i7LTZMRO"
+    },
+    "newUser":{
+        "email": "newUser@clinchtech.com",
+        "password": "APSnzzL6"
     }
 }
