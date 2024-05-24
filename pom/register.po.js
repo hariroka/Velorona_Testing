@@ -16,7 +16,6 @@ exports.registerPage = class loginPage {
         this.companyTimezoneSelect = `//input[@id=':rd:']`;
         this.submitButton = `//button[@id=':rf:']`;
         this.nextButton = `//button[normalize-space()='Next']`;
-        // this.country = `//li[contains(., 'United States')]`;
     }
 
   async countrySelect(country) {
@@ -24,14 +23,11 @@ exports.registerPage = class loginPage {
     await this.page.fill(this.companyCountrySelect, country); 
     await this.page.waitForSelector(`//li[contains(., '`+country+`')]`);
     await this.page.click(`//li[contains(., '`+country+`')]`);
-    // await this.page.waitForSelector("this.country");
     await this.page.waitForTimeout(2000);
   }
   async countrySelectAll(number) {
     await this.page.click(this.companyCountrySelect);
     await this.page.click(`//li[@id=':rb:-option-`+number+`']`);
-    // await this.page.waitForSelector(`//li[contains(., 'Afghanistan')]`);
-    // await this.page.click(`//li[contains(., 'Afghanistan')]`);
     await this.page.waitForTimeout(500);
   }
 }
