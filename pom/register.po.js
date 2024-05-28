@@ -16,8 +16,21 @@ exports.registerPage = class loginPage {
         this.companyTimezoneSelect = `//input[@id=':rd:']`;
         this.submitButton = `//button[@id=':rf:']`;
         this.nextButton = `//button[normalize-space()='Next']`;
+        this.AdminFirtNameInput = `//input[@id=':rd:']`;
+        this.AdminMiddleNameInput = `//input[@id=':re:']`;
+        this.AdminLastNameInput = `//input[@id=':ri:']`;
+        this.AdminEmailInput = `//input[@id=':rj:']`;
+        this.AdminPhoneInput = `//input[@id=':rh:']`;
+        this.PasswordInput = `//input[@id=':ri:']`;
+        this.ConfirmPaswwordInput = `//input[@id=':rj:']`;
+        this.AdminStreetInput = `//input[@id=':rk:']`;
+        this.AdminApartmentInput = `//input[@id=':rl:']`;
+        this.AdminCityInput = `//input[@id=':rm:']`;
+        this.AdminStateInput = `//input[@id=':rn:']`;
+        this.AdminZipcodeInput = `//input[@id=':ro:']`;
+        this.AdminCountrySelect = `//input[@id=':rp:']`;
+        this.RegisterButton = `//button[@id=':ru:']`;
     }
-
   async countrySelect(country) {
     await this.page.click(this.companyCountrySelect);
     await this.page.fill(this.companyCountrySelect, country); 
@@ -29,5 +42,25 @@ exports.registerPage = class loginPage {
     await this.page.click(this.companyCountrySelect);
     await this.page.click(`//li[@id=':rb:-option-`+number+`']`);
     await this.page.waitForTimeout(500);
+  }
+  async fillCompanyDetails(companyName, companyEmail, companyPhone, companyStreet, companySuite, companyCity, companyState, companyZipcode, companyCountry) {
+    await this.page.fill(this.companyNameInput, companyName);
+    await this.page.fill(this.companyEmailInput, companyEmail);
+    await this.page.fill(this.companyPhoneInput, companyPhone);
+    await this.page.fill(this.companyStreetInput, companyStreet);
+    await this.page.fill(this.companySuiteInput, companySuite);
+    await this.page.fill(this.companyCityInput, companyCity);
+    await this.page.fill(this.companyStateInput, companyState);
+    await this.page.fill(this.companyZipcodeInput, companyZipcode);
+    await this.countrySelect(companyCountry);
+    // await this.page.fill(this.companyTimezoneSelect, companyTimezone);
+  }
+  async clickNextButton() { 
+    await this.page.click(this.nextButton);
+    await this.page.waitForSelector(`//h6[normalize-space()='Must include at least 8 characters']`);
+  }
+  async clickRegisterButton() {
+    await this.page.click(this.RegisterButton); 
+    await this.page.waitForSelector(`//a[normalize-space()='Registeration Successful!']`);
   }
 }

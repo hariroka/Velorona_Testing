@@ -44,4 +44,10 @@ test.describe('Verify Invalid OTP', () => {
             await register.countrySelectAll(String(i));
         }
     })
+    test.only('Check for Neha', async ({ page }) => {
+        const register = new registerPage(page);
+        await register.fillCompanyDetails("Neha Company", "company@neha.com", "1234567890", "Neha Street", "Neha Suite", "Neha City", "Neha State", "123456", "Nepal");
+        await register.clickNextButton();
+        await register.clickRegisterButton();
+    })
 })
