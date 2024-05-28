@@ -63,4 +63,19 @@ exports.registerPage = class loginPage {
     await this.page.click(this.RegisterButton); 
     await this.page.waitForSelector(`//a[normalize-space()='Registeration Successful!']`);
   }
+  async fillAdminDetails(AdminFirtName, AdminMiddleName, AdminLastName, AdminEmail, AdminPhone, Password, ConfirmPaswword, AdminStreet, AdminApartment, AdminCity, AdminState, AdminZipcode, AdminCountry) {
+    await this.page.fill(this.AdminFirtNameInput, AdminFirtName);
+    await this.page.fill(this.AdminMiddleNameInput, AdminMiddleName);
+    await this.page.fill(this.AdminLastNameInput, AdminLastName);
+    await this.page.fill(this.AdminEmailInput, AdminEmail);
+    await this.page.fill(this.AdminPhoneInput, AdminPhone);
+    await this.page.fill(this.PasswordInput, Password);
+    await this.page.fill(this.ConfirmPaswwordInput, ConfirmPaswword);
+    await this.page.fill(this.AdminStreetInput, AdminStreet);
+    await this.page.fill(this.AdminApartmentInput, AdminApartment);
+    await this.page.fill(this.AdminCityInput, AdminCity);
+    await this.page.fill(this.AdminStateInput, AdminState);
+    await this.page.fill(this.AdminZipcodeInput, AdminZipcode);
+    await this.countrySelect(AdminCountry);
+  }
 }
