@@ -16,10 +16,10 @@ test.beforeEach(async ({ page }) => {
 test.describe('Reset Password Successful', () => {
     test('Login_013 Reset Password Success', async ({ page }) => {
         const forgot = new forgotPassPage(page);
-        await forgot.resetPassword(loginData.validCredential.email, "For security reasons, an OTP has been sent to your email.");
+        await forgot.resetPassword(loginData.valid.user.email, "For security reasons, an OTP has been sent to your email.");
         await forgot.otpWrite("000000")
-        await forgot.passwordWrite(loginData.validCredential.newPassword)
-        await forgot.confirmPasswordWrite(loginData.validCredential.newPassword)
+        await forgot.passwordWrite(loginData.valid.user.newPassword)
+        await forgot.confirmPasswordWrite(loginData.valid.user.newPassword)
         await forgot.resetPass()
         await forgot.select("Password has been reset successfully!")
     })

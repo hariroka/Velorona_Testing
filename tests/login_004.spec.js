@@ -18,17 +18,17 @@ test.describe('Verify Login Form fields if they are optional', () => {
     })
     test('Login_004 Email only empty', async ({ page }) => {
         const login = new loginPage(page);
-        await login.login('', loginData.validCredential.password); 
+        await login.login('', loginData.valid.user.password); 
         await login.select(emailError.required);
     })
     test('Login_004 password only empty', async ({ page }) => {
         const login = new loginPage(page);
-        await login.login(loginData.validCredential.email,''); 
+        await login.login(loginData.valid.user.email,''); 
         await login.select(passError.required);
     })
     test('Login_004 Email must be valid', async ({ page }) => {
         const login = new loginPage(page);
-        await login.login(loginData.invalidCredential.email,loginData.validCredential.password); 
+        await login.login(loginData.invalid.email,loginData.valid.user.password); 
         await login.select(emailError.invalid);
     })
 })

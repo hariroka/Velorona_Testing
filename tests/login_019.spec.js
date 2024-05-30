@@ -10,7 +10,7 @@ test.beforeEach(async ({ page }) => {
 test.describe('Verify Successful Login', () => {
     test('Login_019', async ({ page }) => {
         const login = new loginPage(page);
-        await login.login(data.validCredential.email, data.validCredential.password); 
+        await login.login(data.valid.user.email, data.valid.user.password); 
         const otpPass = '000000'
         await login.otpWrite(otpPass);
         const selectMessage = 'Welcome';

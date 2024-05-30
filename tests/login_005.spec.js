@@ -12,7 +12,7 @@ test.beforeEach(async ({ page }) => {
 test.describe('Verify failed login with Mismatched credentials/ unregistered data', () => {
     test('Login_005', async ({ page }) => {
         const login = new loginPage(page);
-        await login.login(loginData.mismatchedCredential.email, loginData.mismatchedCredential.password); 
+        await login.login(loginData.mismatched.email, loginData.mismatched.password); 
         await login.select('Invalid Credentials');
     })
 })

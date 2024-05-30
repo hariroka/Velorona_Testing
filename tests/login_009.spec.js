@@ -15,11 +15,11 @@ test.beforeEach(async ({ page }) => {
 test.describe('Verify Change Password page', () => {
     test('Login_009 Title', async ({ page }) => {
         const forgot = new forgotPassPage(page);
-        await forgot.resetPassword(loginData.validCredential.email, "For security reasons, an OTP has been sent to your email.");
+        await forgot.resetPassword(loginData.valid.user.email, "For security reasons, an OTP has been sent to your email.");
     })
     test('Login_009 Return to Sign in', async ({ page }) => {
         const forgot = new forgotPassPage(page);
-        await forgot.resetPassword(loginData.validCredential.email, "For security reasons, an OTP has been sent to your email.");
+        await forgot.resetPassword(loginData.valid.user.email, "For security reasons, an OTP has been sent to your email.");
         await forgot.returnToSignIn();
     })
 })

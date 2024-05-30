@@ -1,14 +1,32 @@
 {
-    "validCredential":{
-        "email": "admin@clinchtech.com",
-        "password": "P@$$W0Rd",
-        "newPassword": "P@$$W0Rd"
+    "valid":{
+        "admin":{
+            "email": "admin@clinchtech.com",
+            "password": "P@$$W0Rd"
+        },
+        "payrollAdmin":{
+            "email": "admin@clinchtech.com",
+            "password": "P@$$W0Rd"
+        },
+        "Approver":{
+            "email": "admin@clinchtech.com",
+            "password": "P@$$W0Rd"
+        },
+        "employee":{
+            "email": "employee_test@velorona.com",
+            "password": "P@$$W0Rd"
+        },
+        "user":{
+            "email": "admin@clinchtech.com",
+            "password": "P@$$W0Rd",
+            "newPassword": "P@$$W0Rd"
+        }
     },
-    "invalidCredential":{
+    "invalid":{
         "email": "adminclinchtech.com",
         "password": "P@$$WoRd"
     },
-    "mismatchedCredential":{
+    "mismatched":{
         "email": "admin@clinchtech.com",
         "password": "P@ssW0Rd"
     },

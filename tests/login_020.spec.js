@@ -11,14 +11,14 @@ test.beforeEach(async ({ page }) => {
 test.describe('Verify optional OTP for Remember me enabled', () => {
     test('Login_020', async ({ page }) => {
         const login = new loginPage(page);
-        await login.loginWithRememberMe(data.validCredential.email, data.validCredential.password); 
+        await login.loginWithRememberMe(data.valid.user.email, data.valid.user.password); 
         const otpPass = '000000'
         await login.otpWrite(otpPass);
         await login.select("Welcome");
         const dashboard = new dashboardPage(page);
         await dashboard.logOut1();
         await login.select("User Login");
-        await login.login(data.validCredential.email, data.validCredential.password);
+        await login.login(data.valid.user.email, data.valid.user.password);
         await login.select("Welcome");
     })
 })

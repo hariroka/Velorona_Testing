@@ -16,19 +16,19 @@ test.beforeEach(async ({ page }) => {
 test.describe('Verify Password criteria and matching', () => {
     test('Login_012 Password missmatch', async ({ page }) => {
         const forgot = new forgotPassPage(page);
-        await forgot.resetPassword(loginData.validCredential.email, "For security reasons, an OTP has been sent to your email.");
+        await forgot.resetPassword(loginData.valid.user.email, "For security reasons, an OTP has been sent to your email.");
         await forgot.otpWrite("000000")
-        await forgot.passwordWrite(loginData.validCredential.password)
-        await forgot.confirmPasswordWrite(loginData.invalidCredential.password)
+        await forgot.passwordWrite(loginData.valid.user.password)
+        await forgot.confirmPasswordWrite(loginData.invalid.password)
         await forgot.resetPass()
         await forgot.select(passError.missmatch)
     })
     test('Login_011 Criteria not fulfilled', async ({ page }) => {
         const forgot = new forgotPassPage(page);
-        await forgot.resetPassword(loginData.validCredential.email, "For security reasons, an OTP has been sent to your email.");
+        await forgot.resetPassword(loginData.valid.user.email, "For security reasons, an OTP has been sent to your email.");
         await forgot.otpWrite('')
-        await forgot.passwordWrite(loginData.invalidCredential.password)
-        await forgot.confirmPasswordWrite(loginData.invalidCredential.password)
+        await forgot.passwordWrite(loginData.invalid.password)
+        await forgot.confirmPasswordWrite(loginData.invalid.password)
         await forgot.resetPass()
         await forgot.isPasswordInputRed()
     })

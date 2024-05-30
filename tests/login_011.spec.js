@@ -16,19 +16,19 @@ test.beforeEach(async ({ page }) => {
 test.describe('Verify Invalid OTP', () => {
     test('Login_011 Invalid OTP', async ({ page }) => {
         const forgot = new forgotPassPage(page);
-        await forgot.resetPassword(loginData.validCredential.email, "For security reasons, an OTP has been sent to your email.");
+        await forgot.resetPassword(loginData.valid.user.email, "For security reasons, an OTP has been sent to your email.");
         await forgot.otpWrite("123456")
-        await forgot.passwordWrite(loginData.validCredential.password)
-        await forgot.confirmPasswordWrite(loginData.validCredential.password)
+        await forgot.passwordWrite(loginData.valid.user.password)
+        await forgot.confirmPasswordWrite(loginData.valid.user.password)
         await forgot.resetPass()
         await forgot.select(otpError.invalid)
     })
     test('Login_011 OTP cannot be empty', async ({ page }) => {
         const forgot = new forgotPassPage(page);
-        await forgot.resetPassword(loginData.validCredential.email, "For security reasons, an OTP has been sent to your email.");
+        await forgot.resetPassword(loginData.valid.user.email, "For security reasons, an OTP has been sent to your email.");
         await forgot.otpWrite('')
-        await forgot.passwordWrite(loginData.validCredential.password)
-        await forgot.confirmPasswordWrite(loginData.validCredential.password)
+        await forgot.passwordWrite(loginData.valid.user.password)
+        await forgot.confirmPasswordWrite(loginData.valid.user.password)
         await forgot.resetPass()
         await forgot.select(otpError.nonEmpty2)
     })
