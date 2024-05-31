@@ -1,15 +1,15 @@
 {
     "valid":{
         "admin":{
-            "email": "admin@clinchtech.com",
+            "email": "admin_test@velorona.com",
             "password": "P@$$W0Rd"
         },
-        "payrollAdmin":{
-            "email": "admin@clinchtech.com",
+        "payroll":{
+            "email": "payroll_test@velorona.com",
             "password": "P@$$W0Rd"
         },
-        "Approver":{
-            "email": "admin@clinchtech.com",
+        "approver":{
+            "email": "approver_test@velorona.com",
             "password": "P@$$W0Rd"
         },
         "employee":{
