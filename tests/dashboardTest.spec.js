@@ -7,6 +7,7 @@ const otpError = require(`../errorMessages/otpErrors.json`);
 const { loginPage } = require('../pom/login.po.js');
 const { forgotPassPage } = require('../pom/forgotPass.po.js');
 const { registerPage } = require('../pom/register.po.js');
+const { dashboardPage } = require('../pom/dashboard.po.js');
 const { employeeDashboardPage } = require('../pom/employeeDashboard.po.js');
 const { adminDashboardPage } = require('../pom/adminDashboard.po.js');
 
@@ -70,5 +71,12 @@ test.describe('Data Collection and viewinng of Dashboard', () => {
         console.log(await employeeDashboard.timesheetDataCounter());
         console.log("Check-in Data of Employee")
         console.log(await employeeDashboard.check_inDataCounter());
+    })
+    test.only('Check if the user is able to click on the menu items', async ({ page }) => {
+        const login = new loginPage(page);
+        await login.login(loginData.valid.admin.email, loginData.valid.admin.password);
+        await login.select("Welcome");
+        const dashboard = new dashboardPage(page);
+        await dashboard.checkMenuItems();
     })
 })
