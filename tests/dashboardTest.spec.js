@@ -13,6 +13,7 @@ const { adminDashboardPage } = require('../pom/adminDashboard.po.js');
 
 test.beforeEach(async ({ page }) => {
     await page.goto('/');
+    await page.goto('/');
 });
 
 test.describe('Data Collection and viewinng of Dashboard', () => {
@@ -77,6 +78,13 @@ test.describe('Data Collection and viewinng of Dashboard', () => {
         await login.login(loginData.valid.admin.email, loginData.valid.admin.password);
         await login.select("Welcome");
         const dashboard = new dashboardPage(page);
-        await dashboard.checkMenuItems();
+        const actualTS = await dashboard.timesheetDataCounter();
+        await page.click(dashboard.menuDashboard);
+        await page.click(dashboard.subMenuDashboardGeneral);
+        const adminDashboard = new adminDashboardPage(page);
+        const dashTs = await adminDashboard.timesheetDataCounter();
+        expect(actualTS).toEqual(dashTs);
+        // await dashboard.checkMenuItems();
+        // await dashboard.select("All Clients");
     })
 })
