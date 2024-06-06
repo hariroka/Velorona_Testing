@@ -34,6 +34,7 @@ exports.adminDashboardPage = class adminDashboardPage {
     this.invoicesPaid = `//body[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[3]/div[1]/div[6]/div[1]/div[5]/div[1]/div[1]/h3[1]`
     this.invoicesIncomplete = `//body[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[3]/div[1]/div[6]/div[1]/div[6]/div[1]/div[1]/h3[1]`
     this.invoicesArchived = `//body[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[3]/div[1]/div[6]/div[1]/div[7]/div[1]/div[1]/h3[1]`
+    
   }
   async clientsCounter() {
     const totalCount = await this.page.locator(this.clientsTotal).textContent();

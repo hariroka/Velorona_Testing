@@ -1,8 +1,8 @@
 const { test, expect } = require('@playwright/test');
 
-const data = require(`../fixtures/fixture.json`);
-const { loginPage } = require('../pom/login.po.js');
-const { dashboardPage } = require('../pom/dashboard.po.js');
+const data = require(`../../fixtures/fixture.json`);
+const { loginPage } = require('../../pom/login.po.js');
+const { dashboardPage } = require('../../pom/dashboard.po.js');
 
 test.beforeEach(async ({ page }) => {
     await page.goto('/');

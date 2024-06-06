@@ -13,7 +13,7 @@ const { adminDashboardPage } = require('../pom/adminDashboard.po.js');
 
 test.beforeEach(async ({ page }) => {
     await page.goto('/');
-    await page.goto('/');
+    await page.goto('https://app-staging.velorona.net/');
 });
 
 test.describe('Data Collection and viewinng of Dashboard', () => {
@@ -73,11 +73,13 @@ test.describe('Data Collection and viewinng of Dashboard', () => {
         console.log("Check-in Data of Employee")
         console.log(await employeeDashboard.check_inDataCounter());
     })
-    test.only('Check if the user is able to click on the menu items', async ({ page }) => {
+    test('Check if the user is able to click on the menu items', async ({ page }) => {
         const login = new loginPage(page);
         await login.login(loginData.valid.admin.email, loginData.valid.admin.password);
         await login.select("Welcome");
         const dashboard = new dashboardPage(page);
+        await page.click(dashboard.companySwitchButton);
+        await page.click(dashboard.nextCompany);
         const actualTS = await dashboard.timesheetDataCounter();
         await page.click(dashboard.menuDashboard);
         await page.click(dashboard.subMenuDashboardGeneral);
@@ -86,5 +88,22 @@ test.describe('Data Collection and viewinng of Dashboard', () => {
         expect(actualTS).toEqual(dashTs);
         // await dashboard.checkMenuItems();
         // await dashboard.select("All Clients");
+    })
+    test('Check and print clients data from dashboard page', async ({ page }) => {
+        const login = new loginPage(page);
+        await login.login(loginData.valid.admin.email, loginData.valid.admin.password);
+        await login.select("Welcome");
+        const dashboard = new dashboardPage(page);
+        await page.click(dashboard.companySwitchButton);
+        // await page.click(dashboard.nextCompany);
+        await page.waitForTimeout(2000);
+        await login.select("Welcome");
+        // const actualClients = await dashboard.clientDataCounter();
+        // const actualProjects = await dashboard.projectsDataCounter();
+        // const actualCheckIns = await dashboard.checkInDataCounter();
+        // const actualSchedules = await dashboard.schedulesDataCounter();
+        const actualInvoices = await dashboard.invoicesDataCounter();
+        // console.log(actualClients, actualProjects);
+        console.log(actualInvoices);
     })
 })
