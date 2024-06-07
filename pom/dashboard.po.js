@@ -502,6 +502,7 @@ exports.dashboardPage = class dashboardPage {
   }
 
   async schedulesDataCounter() {
+    await this.page.click(this.expand);
     await this.page.click(this.menuSchedules);
     let totalCount, activeCount, inactiveCount, archivedCount;
 
