@@ -17,7 +17,7 @@ exports.dashboardPage = class dashboardPage {
     this.menuUsers = `//span[normalize-space()='users']`
     this.menuTimesheets = `//span[normalize-space()='Timesheets']`
     this.menuCheckIn = `//span[normalize-space()='Check-In Check-Out']`
-    this.menuSchedules = `//span[normalize-space()='schedules']`
+    this.menuSchedules = `//span[normalize-space()='Schedules']`
     this.menuExpenses = `//span[normalize-space()='expenses']`
     this.menuInvoices = `//span[normalize-space()='invoices']`
     this.subMenuInvoicesGeneral = `//span[normalize-space()='General']`
@@ -50,7 +50,8 @@ exports.dashboardPage = class dashboardPage {
     this.incompleteTab = `//button[normalize-space()='Incomplete']`
     this.archivedTab = `//button[normalize-space()='Archived']`
     this.companySwitchButton = `//div[@class='MuiBox-root css-1mocby8']`
-    this.nextCompany = `//body[1]/div[3]/div[3]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/a[2]/li[1]/div[2]`
+    // this.nextCompany = `//body[1]/div[3]/div[3]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/a[2]/li[1]/div[2]`
+    this.nextCompany = `//span[normalize-space()='ORIENT']`
   }
   async logOut1() {
     await this.page.click(this.user1);
@@ -90,15 +91,15 @@ exports.dashboardPage = class dashboardPage {
     await this.page.waitForTimeout(1000);
     await this.page.click(this.menuInvoices);
     await this.page.click(this.subMenuInvoicesGeneral);
-    await this.page.waitForSelector(`//h4[normalize-space()='All manual Invoices']`)
+    await this.page.waitForSelector(`//h4[normalize-space()='All General Invoices']`)
     await this.page.waitForTimeout(1000);
     await this.page.click(this.menuInvoices);
     await this.page.click(this.subMenuInvoicesClient);
-    await this.page.waitForSelector(`//h4[normalize-space()='All client Invoices']`)
+    await this.page.waitForSelector(`//h4[normalize-space()='All client Based Invoices']`)
     await this.page.waitForTimeout(1000);
     await this.page.click(this.menuInvoices);
     await this.page.click(this.subMenuInvoicesEmployee);
-    await this.page.waitForSelector(`//h4[normalize-space()='All employee Invoices']`)
+    await this.page.waitForSelector(`//h4[normalize-space()='All employee Based Invoices']`)
     await this.page.waitForTimeout(1000);
     await this.page.click(this.menuInvoices);
     await this.page.click(this.subMenuInvoicesAutomatic);
@@ -575,7 +576,7 @@ exports.dashboardPage = class dashboardPage {
     let totalCount, totalCount1, totalCount2, totalCount3, totalCount4, draftCount, pendingCount, overdueCount, paidCount, incompleteCount, archivedCount;
 
     await this.page.click(this.allTab);
-    await this.page.waitForSelector(`//h4[normalize-space()='All manual Invoices']`)
+    await this.page.waitForSelector(`//h4[normalize-space()='All General Invoices']`)
     if (await this.page.isVisible("No Data")) {
       await this.select("No Data");
       totalCount1 = "0";
@@ -591,7 +592,7 @@ exports.dashboardPage = class dashboardPage {
     await this.page.click(this.subMenuInvoicesClient);
 
     await this.page.click(this.allTab);
-    await this.page.waitForSelector(`//h4[normalize-space()='All client Invoices']`)
+    await this.page.waitForSelector(`//h4[normalize-space()='All client Based Invoices']`)
     if (await this.page.isVisible("No Data")) {
       await this.select("No Data");
       totalCount2 = "0";
@@ -608,7 +609,7 @@ exports.dashboardPage = class dashboardPage {
     await this.page.click(this.subMenuInvoicesEmployee);
 
     await this.page.click(this.allTab);
-    await this.page.waitForSelector(`//h4[normalize-space()='All employee Invoices']`)
+    await this.page.waitForSelector(`//h4[normalize-space()='All employee Based Invoices']`)
     if (await this.page.isVisible("No Data")) {
       await this.select("No Data");
       totalCount3 = "0";
@@ -643,10 +644,10 @@ exports.dashboardPage = class dashboardPage {
 
     await this.page.click(this.menuInvoices);
     await this.page.click(this.subMenuInvoicesGeneral);
-    await this.page.waitForSelector(`//h4[normalize-space()='All manual Invoices']`)
+    await this.page.waitForSelector(`//h4[normalize-space()='All General Invoices']`)
 
     await this.page.click(this.draftTab);
-    await this.page.waitForSelector(`//h4[normalize-space()='All manual Invoices']`)
+    await this.page.waitForSelector(`//h4[normalize-space()='All General Invoices']`)
     if (await this.page.isVisible("No Data")) {
       await this.select("No Data");
       draftCount = "0";
@@ -660,7 +661,7 @@ exports.dashboardPage = class dashboardPage {
     }
 
     await this.page.click(this.pendingTab);
-    await this.page.waitForSelector(`//h4[normalize-space()='All manual Invoices']`)
+    await this.page.waitForSelector(`//h4[normalize-space()='All General Invoices']`)
     if (await this.page.isVisible("No Data")) {
       await this.select("No Data");
       pendingCount = "0";
@@ -674,7 +675,7 @@ exports.dashboardPage = class dashboardPage {
     }
 
     await this.page.click(this.overdueTab);
-    await this.page.waitForSelector(`//h4[normalize-space()='All manual Invoices']`)
+    await this.page.waitForSelector(`//h4[normalize-space()='All General Invoices']`)
     if (await this.page.isVisible("No Data")) {
       await this.select("No Data");
       overdueCount = "0";
@@ -688,7 +689,7 @@ exports.dashboardPage = class dashboardPage {
     }
 
     await this.page.click(this.paidTab);
-    await this.page.waitForSelector(`//h4[normalize-space()='All manual Invoices']`)
+    await this.page.waitForSelector(`//h4[normalize-space()='All General Invoices']`)
     if (await this.page.isVisible("No Data")) {
       await this.select("No Data");
       paidCount = "0";
@@ -702,7 +703,7 @@ exports.dashboardPage = class dashboardPage {
     }
 
     await this.page.click(this.incompleteTab);
-    await this.page.waitForSelector(`//h4[normalize-space()='All manual Invoices']`)
+    await this.page.waitForSelector(`//h4[normalize-space()='All General Invoices']`)
     if (await this.page.isVisible("No Data")) {
       await this.select("No Data");
       incompleteCount = "0";
@@ -716,7 +717,7 @@ exports.dashboardPage = class dashboardPage {
     }
 
     await this.page.click(this.archivedTab);
-    await this.page.waitForSelector(`//h4[normalize-space()='All manual Invoices']`)
+    await this.page.waitForSelector(`//h4[normalize-space()='All General Invoices']`)
     if (await this.page.isVisible("No Data")) {
       await this.select("No Data");
       archivedCount = "0";

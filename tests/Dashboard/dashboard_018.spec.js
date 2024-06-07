@@ -17,7 +17,7 @@ test.beforeEach(async ({ page }) => {
 });
 
 test.describe('Verify data of the Timesheets Submodule within General Page', () => {
-    test('dashboard_010 Company Admin - Timesheets', async ({ page }) => {
+    test('dashboard_018 Company Admin - Timesheets', async ({ page }) => {
         const login = new loginPage(page);
         await login.login(loginData.valid.admin.email, loginData.valid.admin.password);
         await login.select("Welcome");
@@ -33,7 +33,7 @@ test.describe('Verify data of the Timesheets Submodule within General Page', () 
         const dashtimesheets = await adminDashboard.timesheetDataCounter();
         expect (dashtimesheets).toStrictEqual(actualtimesheets);
     })
-    test('dashboard_010 Company Admin - Check-Ins', async ({ page }) => {
+    test('dashboard_018 Company Admin - Check-Ins', async ({ page }) => {
         const login = new loginPage(page);
         await login.login(loginData.valid.admin.email, loginData.valid.admin.password);
         await login.select("Welcome");

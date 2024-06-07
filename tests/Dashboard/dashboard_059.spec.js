@@ -17,13 +17,13 @@ test.beforeEach(async ({ page }) => {
 });
 
 test.describe('Verify data of the Schedules Submodule within General Page', () => {
-    test('dashboard_010 Payroll Admin', async ({ page }) => {
+    test('dashboard_059 Payroll Admin', async ({ page }) => {
         const login = new loginPage(page);
         await login.login(loginData.valid.payroll.email, loginData.valid.payroll.password);
         await login.select("Welcome");
         const dashboard = new dashboardPage(page);
-        await page.click(dashboard.companySwitchButton);
-        await page.click(dashboard.nextCompany);
+        // await page.click(dashboard.companySwitchButton);
+        // await page.click(dashboard.nextCompany);
         await login.select("Welcome");
         const actualSchedules = await dashboard.schedulesDataCounter();
         await page.click(dashboard.menuDashboard);

@@ -17,7 +17,7 @@ test.beforeEach(async ({ page }) => {
 });
 
 test.describe('Verify data of the Timesheets Submodule within General Page', () => {
-    test('dashboard_010 Approver - Timesheets', async ({ page }) => {
+    test('dashboard_086 Approver - Timesheets', async ({ page }) => {
         const login = new loginPage(page);
         await login.login(loginData.valid.employee.email, loginData.valid.employee.password);
         await login.select("Welcome");
@@ -33,13 +33,13 @@ test.describe('Verify data of the Timesheets Submodule within General Page', () 
         const dashtimesheets = await adminDashboard.timesheetDataCounter();
         expect (dashtimesheets).toStrictEqual(actualtimesheets);
     })
-    test('dashboard_010 Approver - Check-Ins', async ({ page }) => {
+    test('dashboard_086 Approver - Check-Ins', async ({ page }) => {
         const login = new loginPage(page);
         await login.login(loginData.valid.employee.email, loginData.valid.employee.password);
         await login.select("Welcome");
         const dashboard = new dashboardPage(page);
-        await page.click(dashboard.companySwitchButton);
-        await page.click(dashboard.nextCompany);
+        // await page.click(dashboard.companySwitchButton);
+        // await page.click(dashboard.nextCompany);
         await login.select("Welcome");
         const actualTimesheets = await dashboard.checkInDataCounter();
         await page.click(dashboard.menuDashboard);

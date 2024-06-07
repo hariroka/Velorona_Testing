@@ -17,13 +17,13 @@ test.beforeEach(async ({ page }) => {
 });
 
 test.describe('Verify data of the Timesheets Submodule within General Page', () => {
-    test('dashboard_010 Payroll Admin - Timesheets', async ({ page }) => {
+    test('dashboard_057 Payroll Admin - Timesheets', async ({ page }) => {
         const login = new loginPage(page);
         await login.login(loginData.valid.payroll.email, loginData.valid.payroll.password);
         await login.select("Welcome");
         const dashboard = new dashboardPage(page);
-        await page.click(dashboard.companySwitchButton);
-        await page.click(dashboard.nextCompany);
+        // await page.click(dashboard.companySwitchButton);
+        // await page.click(dashboard.nextCompany);
         await login.select("Welcome");
         const actualtimesheets = await dashboard.timesheetDataCounter();
         await page.click(dashboard.menuDashboard);
@@ -38,8 +38,8 @@ test.describe('Verify data of the Timesheets Submodule within General Page', () 
         await login.login(loginData.valid.payroll.email, loginData.valid.payroll.password);
         await login.select("Welcome");
         const dashboard = new dashboardPage(page);
-        await page.click(dashboard.companySwitchButton);
-        await page.click(dashboard.nextCompany);
+        // await page.click(dashboard.companySwitchButton);
+        // await page.click(dashboard.nextCompany);
         await login.select("Welcome");
         const actualTimesheets = await dashboard.checkInDataCounter();
         await page.click(dashboard.menuDashboard);

@@ -17,7 +17,7 @@ test.beforeEach(async ({ page }) => {
 });
 
 test.describe('Verify data of the Schedules Submodule within General Page', () => {
-    test('dashboard_010 Company Admin', async ({ page }) => {
+    test('dashboard_020 Company Admin', async ({ page }) => {
         const login = new loginPage(page);
         await login.login(loginData.valid.admin.email, loginData.valid.admin.password);
         await login.select("Welcome");
