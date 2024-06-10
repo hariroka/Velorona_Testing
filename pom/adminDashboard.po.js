@@ -1,6 +1,7 @@
 const requirement = require('playwright/test');
 
 exports.adminDashboardPage = class adminDashboardPage {
+  
   constructor(page) {
     this.page = page;
     this.clientsTotal = `//body[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/h3[1]`
@@ -36,6 +37,7 @@ exports.adminDashboardPage = class adminDashboardPage {
     this.invoicesArchived = `//body[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[3]/div[1]/div[6]/div[1]/div[7]/div[1]/div[1]/h3[1]`
     
   }
+
   async clientsCounter() {
     const totalCount = await this.page.locator(this.clientsTotal).textContent();
     const activeCount = await this.page.locator(this.clientsActive).textContent();
@@ -49,6 +51,7 @@ exports.adminDashboardPage = class adminDashboardPage {
     }
     return result;
   }
+  
   async projectsCounter() {
     const totalCount = await this.page.locator(this.projectsTotal).textContent();
     const activeCount = await this.page.locator(this.projectsActive).textContent();
@@ -62,6 +65,7 @@ exports.adminDashboardPage = class adminDashboardPage {
     }
     return result;
   }
+
   async timesheetDataCounter() {
     const totalCount = await this.page.locator(this.timesheetTotal).textContent();
     const openCount = await this.page.locator(this.timesheetOpen).textContent();
@@ -79,6 +83,7 @@ exports.adminDashboardPage = class adminDashboardPage {
     }
     return result;
   }
+
   async check_inDataCounter() {
     const totalCount = await this.page.locator(this.check_inTotal).textContent();
     const openCount = await this.page.locator(this.check_inOpen).textContent();
@@ -96,6 +101,7 @@ exports.adminDashboardPage = class adminDashboardPage {
     }
     return result;
   }
+
   async schedulesCounter() {
     const totalCount = await this.page.locator(this.schedulesTotal).textContent();
     const activeCount = await this.page.locator(this.schedulesActive).textContent();
@@ -109,6 +115,7 @@ exports.adminDashboardPage = class adminDashboardPage {
     }
     return result;
   }
+
   async invoicesCounter() {
     const totalCount = await this.page.locator(this.invoicesTotal).textContent();
     const draftCount = await this.page.locator(this.invoicesDraft).textContent();

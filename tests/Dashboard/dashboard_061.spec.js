@@ -26,6 +26,8 @@ test.describe('Verify data of the Invoices Submodule within General Page', () =>
         // await page.click(dashboard.nextCompany);
         await login.select("Welcome");
         const actualInvoices = await dashboard.invoicesDataCounter();
+        await page.click(dashboard.menuClients);
+        await login.select("All Clients");
         await page.click(dashboard.menuDashboard);
         await page.click(dashboard.subMenuDashboardGeneral);
         await login.select("General");

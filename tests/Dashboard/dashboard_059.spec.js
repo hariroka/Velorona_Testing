@@ -25,7 +25,7 @@ test.describe('Verify data of the Schedules Submodule within General Page', () =
         // await page.click(dashboard.companySwitchButton);
         // await page.click(dashboard.nextCompany);
         await login.select("Welcome");
-        const actualSchedules = await dashboard.schedulesDataCounter();
+        const actualSchedules = await dashboard.schedulesDataCounter("Payroll Admin");
         await page.click(dashboard.menuDashboard);
         await page.click(dashboard.subMenuDashboardGeneral);
         await login.select("General");

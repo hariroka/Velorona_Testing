@@ -10,6 +10,7 @@ const { registerPage } = require('../../pom/register.po.js');
 const { dashboardPage } = require('../../pom/dashboard.po.js');
 const { employeeDashboardPage } = require('../../pom/employeeDashboard.po.js');
 const { adminDashboardPage } = require('../../pom/adminDashboard.po.js');
+const { log } = require('console');
 
 test.beforeEach(async ({ page }) => {
     await page.goto('/');
@@ -26,6 +27,8 @@ test.describe('Verify data of the Invoices Submodule within General Page', () =>
         await page.click(dashboard.nextCompany);
         await login.select("Welcome");
         const actualInvoices = await dashboard.invoicesDataCounter();
+        await page.click(dashboard.menuClients);
+        await login.select("All Clients");
         await page.click(dashboard.menuDashboard);
         await page.click(dashboard.subMenuDashboardGeneral);
         await login.select("General");

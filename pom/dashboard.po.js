@@ -17,7 +17,8 @@ exports.dashboardPage = class dashboardPage {
     this.menuUsers = `//span[normalize-space()='users']`
     this.menuTimesheets = `//span[normalize-space()='Timesheets']`
     this.menuCheckIn = `//span[normalize-space()='Check-In Check-Out']`
-    this.menuSchedules = `//span[normalize-space()='Schedules']`
+    this.menuSchedules = `//span[normalize-space()='schedules']`
+    this.menuSchedules1 = `//span[normalize-space()='Schedules']`
     this.menuExpenses = `//span[normalize-space()='expenses']`
     this.menuInvoices = `//span[normalize-space()='invoices']`
     this.subMenuInvoicesGeneral = `//span[normalize-space()='General']`
@@ -167,6 +168,7 @@ exports.dashboardPage = class dashboardPage {
     let totalCount, activeCount, inactiveCount, archivedCount;
 
     await this.page.click(this.allTab);
+    await this.page.waitForTimeout(500);
     await this.select("All Clients");
     if (await this.page.isVisible("No Data")) {
       await this.select("No Data");
@@ -181,6 +183,7 @@ exports.dashboardPage = class dashboardPage {
     }
 
     await this.page.click(this.activeTab);
+    await this.page.waitForTimeout(500);
     await this.select("All Clients");
     if (await this.page.isVisible("No Data")) {
       await this.select("No Data");
@@ -195,6 +198,7 @@ exports.dashboardPage = class dashboardPage {
     }
 
     await this.page.click(this.inactiveTab);
+    await this.page.waitForTimeout(500);
     await this.select("All Clients");
     if (await this.page.isVisible("No Data")) {
       await this.select("No Data");
@@ -209,6 +213,7 @@ exports.dashboardPage = class dashboardPage {
     }
 
     await this.page.click(this.archivedTab);
+    await this.page.waitForTimeout(500);
     await this.select("All Clients");
     if (await this.page.isVisible("No Data")) {
       await this.select("No Data");
@@ -237,6 +242,7 @@ exports.dashboardPage = class dashboardPage {
     let totalCount, activeCount, inactiveCount, archivedCount;
 
     await this.page.click(this.allTab);
+    await this.page.waitForTimeout(500);
     await this.select("All Projects");
     if (await this.page.isVisible("No Data")) {
       await this.select("No Data");
@@ -251,6 +257,7 @@ exports.dashboardPage = class dashboardPage {
     }
 
     await this.page.click(this.activeTab);
+    await this.page.waitForTimeout(500);
     await this.select("All Projects");
     if (await this.page.isVisible("No Data")) {
       await this.select("No Data");
@@ -265,6 +272,7 @@ exports.dashboardPage = class dashboardPage {
     }
 
     await this.page.click(this.inactiveTab);
+    await this.page.waitForTimeout(500);
     await this.select("All Projects");
     if (await this.page.isVisible("No Data")) {
       await this.select("No Data");
@@ -279,6 +287,7 @@ exports.dashboardPage = class dashboardPage {
     }
 
     await this.page.click(this.archivedTab);
+    await this.page.waitForTimeout(500);
     await this.select("All Projects");
     if (await this.page.isVisible("No Data")) {
       await this.select("No Data");
@@ -302,11 +311,12 @@ exports.dashboardPage = class dashboardPage {
   }
 
 
-  async timesheetDataCounter() {
+  async timesheetDataCounter(role = "Admins") {
     await this.page.click(this.menuTimesheets);
     let totalCount, openCount, submittedCount, approvedCount, rejectedCount, archivedCount;
 
     await this.page.click(this.allTab);
+    await this.page.waitForTimeout(500);
     await this.select("All Timesheets");
     if (await this.page.isVisible("No Data")) {
       await this.select("No Data");
@@ -321,6 +331,7 @@ exports.dashboardPage = class dashboardPage {
     }
 
     await this.page.click(this.openTab);
+    await this.page.waitForTimeout(500);
     await this.select("All Timesheets");
     if (await this.page.isVisible("No Data")) {
       await this.select("No Data");
@@ -335,6 +346,7 @@ exports.dashboardPage = class dashboardPage {
     }
 
     await this.page.click(this.submittedTab);
+    await this.page.waitForTimeout(500);
     await this.select("All Timesheets");
     if (await this.page.isVisible("No Data")) {
       await this.select("No Data");
@@ -349,6 +361,7 @@ exports.dashboardPage = class dashboardPage {
     }
 
     await this.page.click(this.approvedTab);
+    await this.page.waitForTimeout(500);
     await this.select("All Timesheets");
     if (await this.page.isVisible("No Data")) {
       await this.select("No Data");
@@ -363,6 +376,7 @@ exports.dashboardPage = class dashboardPage {
     }
 
     await this.page.click(this.rejectedTab);
+    await this.page.waitForTimeout(500);
     await this.select("All Timesheets");
     if (await this.page.isVisible("No Data")) {
       await this.select("No Data");
@@ -376,37 +390,51 @@ exports.dashboardPage = class dashboardPage {
       rejectedCount = await this.count(rejectedCount);
     }
 
-    await this.page.click(this.archivedTab);
-    await this.select("All Timesheets");
-    if (await this.page.isVisible("No Data")) {
-      await this.select("No Data");
-      archivedCount = "0";
-      archivedCount = await this.count(archivedCount);
-    }
-    else{
-      await this.select("Rows per page:");
-      await this.page.waitForTimeout(1000);
-      archivedCount = await this.page.locator(this.timesheetTotal).textContent();
-      archivedCount = await this.count(archivedCount);
-    }
+    if (role === "Admins") {
+      await this.page.click(this.archivedTab);
+      await this.page.waitForTimeout(500);
+      await this.select("All Timesheets");
+      if (await this.page.isVisible("No Data")) {
+        await this.select("No Data");
+        archivedCount = "0";
+        archivedCount = await this.count(archivedCount);
+      }
+      else{
+        await this.select("Rows per page:");
+        await this.page.waitForTimeout(1000);
+        archivedCount = await this.page.locator(this.timesheetTotal).textContent();
+        archivedCount = await this.count(archivedCount);
+      }
 
-    const result = {
-      total: totalCount,
-      open: openCount,
-      submitted: submittedCount,
-      approved: approvedCount,
-      rejected: rejectedCount,
-      archived: archivedCount
+      const result = {
+        total: totalCount,
+        open: openCount,
+        submitted: submittedCount,
+        approved: approvedCount,
+        rejected: rejectedCount,
+        archived: archivedCount
+      }
+      return result;
     }
-    return result;
+    if (role === "Employee" || role === "Approver") {
+      const result = {
+        total: totalCount,
+        open: openCount,
+        submitted: submittedCount,
+        approved: approvedCount,
+        rejected: rejectedCount
+      }
+      return result;
+    }
   }
 
 
-  async checkInDataCounter() {
+  async checkInDataCounter(role = "Admins") {
     await this.page.click(this.menuCheckIn);
     let totalCount, openCount, submittedCount, approvedCount, rejectedCount, archivedCount;
 
     await this.page.click(this.allTab);
+    await this.page.waitForTimeout(500);
     await this.select("All Check-In Check-Out");
     if (await this.page.isVisible("No Data")) {
       await this.select("No Data");
@@ -421,6 +449,7 @@ exports.dashboardPage = class dashboardPage {
     }
 
     await this.page.click(this.openTab);
+    await this.page.waitForTimeout(500);
     await this.select("All Check-In Check-Out");
     if (await this.page.isVisible("No Data")) {
       await this.select("No Data");
@@ -435,6 +464,7 @@ exports.dashboardPage = class dashboardPage {
     }
 
     await this.page.click(this.submittedTab);
+    await this.page.waitForTimeout(500);
     await this.select("All Check-In Check-Out");
     if (await this.page.isVisible("No Data")) {
       await this.select("No Data");
@@ -449,6 +479,7 @@ exports.dashboardPage = class dashboardPage {
     }
 
     await this.page.click(this.approvedTab);
+    await this.page.waitForTimeout(500);
     await this.select("All Check-In Check-Out");
     if (await this.page.isVisible("No Data")) {
       await this.select("No Data");
@@ -463,6 +494,7 @@ exports.dashboardPage = class dashboardPage {
     }
 
     await this.page.click(this.rejectedTab);
+    await this.page.waitForTimeout(500);
     await this.select("All Check-In Check-Out");
     if (await this.page.isVisible("No Data")) {
       await this.select("No Data");
@@ -476,37 +508,59 @@ exports.dashboardPage = class dashboardPage {
       rejectedCount = await this.count(rejectedCount);
     }
 
-    await this.page.click(this.archivedTab);
-    await this.select("All Check-In Check-Out");
-    if (await this.page.isVisible("No Data")) {
-      await this.select("No Data");
-      archivedCount = "0";
-      archivedCount = await this.count(archivedCount);
-    }
-    else{
-      await this.select("Rows per page:");
-      await this.page.waitForTimeout(1000);
-      archivedCount = await this.page.locator(this.timesheetTotal).textContent();
-      archivedCount = await this.count(archivedCount);
-    }
+    if (role === "Admins") {
+      await this.page.click(this.archivedTab);
+      await this.page.waitForTimeout(500);
+      await this.select("All Check-In Check-Out");
+      if (await this.page.isVisible("No Data")) {
+        await this.select("No Data");
+        archivedCount = "0";
+        archivedCount = await this.count(archivedCount);
+      }
+      else{
+        await this.select("Rows per page:");
+        await this.page.waitForTimeout(1000);
+        archivedCount = await this.page.locator(this.timesheetTotal).textContent();
+        archivedCount = await this.count(archivedCount);
+      }
 
-    const result = {
-      total: totalCount,
-      open: openCount,
-      submitted: submittedCount,
-      approved: approvedCount,
-      rejected: rejectedCount,
-      archived: archivedCount
+      const result = {
+        total: totalCount,
+        open: openCount,
+        submitted: submittedCount,
+        approved: approvedCount,
+        rejected: rejectedCount,
+        archived: archivedCount
+      }
+      return result;
     }
-    return result;
+    if (role === "Employee" || role === "Approver") {
+      const result = {
+        total: totalCount,
+        open: openCount,
+        submitted: submittedCount,
+        approved: approvedCount,
+        rejected: rejectedCount
+      }
+      return result;
+    }
   }
 
-  async schedulesDataCounter() {
+
+  async schedulesDataCounter(role = "Company Admin") {
     await this.page.click(this.expand);
-    await this.page.click(this.menuSchedules);
+    if (role === "Company Admin")
+    {
+      await this.page.click(this.menuSchedules);
+    }
+    if (role === "Payroll Admin")
+    {
+      await this.page.click(this.menuSchedules1);
+    }
     let totalCount, activeCount, inactiveCount, archivedCount;
 
     await this.page.click(this.allTab);
+    await this.page.waitForTimeout(500);
     await this.select("All Schedules");
     if (await this.page.isVisible("No Data")) {
       await this.select("No Data");
@@ -521,6 +575,7 @@ exports.dashboardPage = class dashboardPage {
     }
 
     await this.page.click(this.activeTab);
+    await this.page.waitForTimeout(500);
     await this.select("All Schedules");
     if (await this.page.isVisible("No Data")) {
       await this.select("No Data");
@@ -535,6 +590,7 @@ exports.dashboardPage = class dashboardPage {
     }
 
     await this.page.click(this.inactiveTab);
+    await this.page.waitForTimeout(500);
     await this.select("All Schedules");
     if (await this.page.isVisible("No Data")) {
       await this.select("No Data");
@@ -549,6 +605,7 @@ exports.dashboardPage = class dashboardPage {
     }
 
     await this.page.click(this.archivedTab);
+    await this.page.waitForTimeout(500);
     await this.select("All Schedules");
     if (await this.page.isVisible("No Data")) {
       await this.select("No Data");
@@ -571,12 +628,51 @@ exports.dashboardPage = class dashboardPage {
     return result;
   }
 
+  
   async invoicesDataCounter() {
     await this.page.click(this.menuInvoices);
     await this.page.click(this.subMenuInvoicesGeneral);
-    let totalCount, totalCount1, totalCount2, totalCount3, totalCount4, draftCount, pendingCount, overdueCount, paidCount, incompleteCount, archivedCount;
+    let totalCount, draftCount, pendingCount, overdueCount, paidCount, incompleteCount, archivedCount;
 
-    await this.page.click(this.allTab);
+    totalCount = await this.allTabsSum("All");
+    console.log("Total Done");
+    draftCount = await this.allTabsSum("Draft");
+    console.log("Draft Done");
+    pendingCount = await this.allTabsSum("Pending");
+    console.log("Pending Done");
+    overdueCount = await this.allTabsSum("Overdue");
+    console.log("Overdue Done");
+    paidCount = await this.allTabsSum("Paid");
+    console.log("Paid Done");
+    incompleteCount = await this.allTabsSum("Incomplete");  
+    console.log("Incomplete Done");
+    archivedCount = await this.allTabsSum("Archived");
+    console.log("All Done");
+
+    const result = {
+      total: totalCount,
+      draft: draftCount,
+      pending: pendingCount,
+      overdue: overdueCount,
+      paid: paidCount,
+      incomplete: incompleteCount,
+      archived: archivedCount
+    }
+    return result;
+  }
+
+  async allTabsSum(tabName) {
+    let allTab = `//button[normalize-space()='` + tabName + `']`
+    await this.page.click(this.menuClients);
+    await this.select("All Clients");
+
+    await this.page.click(this.menuInvoices);
+    await this.page.click(this.subMenuInvoicesGeneral);
+    await this.page.waitForSelector(`//h4[normalize-space()='All General Invoices']`)
+    let totalCount, totalCount1, totalCount2, totalCount3, totalCount4;
+
+    await this.page.click(allTab);
+    await this.page.waitForTimeout(750);
     await this.page.waitForSelector(`//h4[normalize-space()='All General Invoices']`)
     if (await this.page.isVisible("No Data")) {
       await this.select("No Data");
@@ -589,10 +685,16 @@ exports.dashboardPage = class dashboardPage {
       totalCount1 = await this.page.locator(this.timesheetTotal).textContent();
       totalCount1 = await this.count(totalCount1);
     }
+
+    await this.page.click(this.menuClients);
+    await this.select("All Clients");
+
     await this.page.click(this.menuInvoices);
     await this.page.click(this.subMenuInvoicesClient);
+    await this.page.waitForSelector(`//h4[normalize-space()='All client Based Invoices']`)
 
-    await this.page.click(this.allTab);
+    await this.page.click(allTab);
+    await this.page.waitForTimeout(750);
     await this.page.waitForSelector(`//h4[normalize-space()='All client Based Invoices']`)
     if (await this.page.isVisible("No Data")) {
       await this.select("No Data");
@@ -606,10 +708,15 @@ exports.dashboardPage = class dashboardPage {
       totalCount2 = await this.count(totalCount2);
     }
 
+    await this.page.click(this.menuClients);
+    await this.select("All Clients");
+
     await this.page.click(this.menuInvoices);
     await this.page.click(this.subMenuInvoicesEmployee);
+    await this.page.waitForSelector(`//h4[normalize-space()='All employee Based Invoices']`)
 
-    await this.page.click(this.allTab);
+    await this.page.click(allTab);
+    await this.page.waitForTimeout(750);
     await this.page.waitForSelector(`//h4[normalize-space()='All employee Based Invoices']`)
     if (await this.page.isVisible("No Data")) {
       await this.select("No Data");
@@ -623,10 +730,15 @@ exports.dashboardPage = class dashboardPage {
       totalCount3 = await this.count(totalCount3);
     }
 
+    await this.page.click(this.menuClients);
+    await this.select("All Clients");
+
     await this.page.click(this.menuInvoices);
     await this.page.click(this.subMenuInvoicesAutomatic);
+    await this.page.waitForSelector(`//h4[normalize-space()='All automatic Invoices']`)
 
-    await this.page.click(this.allTab);
+    await this.page.click(allTab);
+    await this.page.waitForTimeout(750);
     await this.page.waitForSelector(`//h4[normalize-space()='All automatic Invoices']`)
     if (await this.page.isVisible("No Data")) {
       await this.select("No Data");
@@ -642,104 +754,6 @@ exports.dashboardPage = class dashboardPage {
 
     totalCount = parseInt(totalCount1) + parseInt(totalCount2) + parseInt(totalCount3) + parseInt(totalCount4);
     totalCount = totalCount.toString();
-
-    await this.page.click(this.menuInvoices);
-    await this.page.click(this.subMenuInvoicesGeneral);
-    await this.page.waitForSelector(`//h4[normalize-space()='All General Invoices']`)
-
-    await this.page.click(this.draftTab);
-    await this.page.waitForSelector(`//h4[normalize-space()='All General Invoices']`)
-    if (await this.page.isVisible("No Data")) {
-      await this.select("No Data");
-      draftCount = "0";
-      draftCount = await this.count(draftCount);
-    }
-    else{
-      await this.select("Rows per page:");
-      await this.page.waitForTimeout(1000);
-      draftCount = await this.page.locator(this.timesheetTotal).textContent();
-      draftCount = await this.count(draftCount);
-    }
-
-    await this.page.click(this.pendingTab);
-    await this.page.waitForSelector(`//h4[normalize-space()='All General Invoices']`)
-    if (await this.page.isVisible("No Data")) {
-      await this.select("No Data");
-      pendingCount = "0";
-      pendingCount = await this.count(pendingCount);
-    }
-    else{
-      await this.select("Rows per page:");
-      await this.page.waitForTimeout(1000);
-      pendingCount = await this.page.locator(this.timesheetTotal).textContent();
-      pendingCount = await this.count(pendingCount);
-    }
-
-    await this.page.click(this.overdueTab);
-    await this.page.waitForSelector(`//h4[normalize-space()='All General Invoices']`)
-    if (await this.page.isVisible("No Data")) {
-      await this.select("No Data");
-      overdueCount = "0";
-      overdueCount = await this.count(overdueCount);
-    }
-    else{
-      await this.select("Rows per page:");
-      await this.page.waitForTimeout(1000);
-      overdueCount = await this.page.locator(this.timesheetTotal).textContent();
-      overdueCount = await this.count(overdueCount);
-    }
-
-    await this.page.click(this.paidTab);
-    await this.page.waitForSelector(`//h4[normalize-space()='All General Invoices']`)
-    if (await this.page.isVisible("No Data")) {
-      await this.select("No Data");
-      paidCount = "0";
-      paidCount = await this.count(paidCount);
-    }
-    else{
-      await this.select("Rows per page:");
-      await this.page.waitForTimeout(1000);
-      paidCount = await this.page.locator(this.timesheetTotal).textContent();
-      paidCount = await this.count(paidCount);
-    }
-
-    await this.page.click(this.incompleteTab);
-    await this.page.waitForSelector(`//h4[normalize-space()='All General Invoices']`)
-    if (await this.page.isVisible("No Data")) {
-      await this.select("No Data");
-      incompleteCount = "0";
-      incompleteCount = await this.count(incompleteCount);
-    }
-    else{
-      await this.select("Rows per page:");
-      await this.page.waitForTimeout(1000);
-      incompleteCount = await this.page.locator(this.timesheetTotal).textContent();
-      incompleteCount = await this.count(incompleteCount);
-    }
-
-    await this.page.click(this.archivedTab);
-    await this.page.waitForSelector(`//h4[normalize-space()='All General Invoices']`)
-    if (await this.page.isVisible("No Data")) {
-      await this.select("No Data");
-      archivedCount = "0";
-      archivedCount = await this.count(archivedCount);
-    }
-    else{
-      await this.select("Rows per page:");
-      await this.page.waitForTimeout(1000);
-      archivedCount = await this.page.locator(this.timesheetTotal).textContent();
-      archivedCount = await this.count(archivedCount);
-    }
-
-    const result = {
-      total: totalCount,
-      draft: draftCount,
-      pending: pendingCount,
-      overdue: overdueCount,
-      paid: paidCount,
-      incomplete: incompleteCount,
-      archived: archivedCount
-    }
-    return result;
+    return totalCount;
   }
 }

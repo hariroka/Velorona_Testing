@@ -28,8 +28,7 @@ exports.employeeDashboardPage = class employeeDashboardPage {
       open: openCount,
       submitted: submittedCount,
       approved: approvedCount,
-      rejected: rejectedCount,
-      archived: archivedCount
+      rejected: rejectedCount
     }
     return result;
   }
@@ -45,8 +44,7 @@ exports.employeeDashboardPage = class employeeDashboardPage {
       open: openCount,
       submitted: submittedCount,
       approved: approvedCount,
-      rejected: rejectedCount,
-      archived: archivedCount
+      rejected: rejectedCount
     }
     return result;
   }

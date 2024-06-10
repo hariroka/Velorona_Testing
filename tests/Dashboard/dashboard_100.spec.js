@@ -25,12 +25,12 @@ test.describe('Verify data of the Timesheets Submodule within General Page', () 
         // await page.click(dashboard.companySwitchButton);
         // await page.click(dashboard.nextCompany);
         await login.select("Welcome");
-        const actualtimesheets = await dashboard.timesheetDataCounter();
-        await page.click(dashboard.menuDashboard);
+        const actualtimesheets = await dashboard.timesheetDataCounter("Employee");
+        // await page.click(dashboard.menuDashboard);
         await page.click(dashboard.subMenuDashboardGeneral);
         await login.select("General");
-        const adminDashboard = new adminDashboardPage(page);
-        const dashtimesheets = await adminDashboard.timesheetDataCounter();
+        const employeeDashboard = new employeeDashboardPage(page);
+        const dashtimesheets = await employeeDashboard.timesheetDataCounter();
         expect (dashtimesheets).toStrictEqual(actualtimesheets);
     })
     test('dashboard_0100 Employee - Check-Ins', async ({ page }) => {
@@ -41,12 +41,12 @@ test.describe('Verify data of the Timesheets Submodule within General Page', () 
         // await page.click(dashboard.companySwitchButton);
         // await page.click(dashboard.nextCompany);
         await login.select("Welcome");
-        const actualTimesheets = await dashboard.checkInDataCounter();
-        await page.click(dashboard.menuDashboard);
+        const actualTimesheets = await dashboard.checkInDataCounter("Employee");
+        // await page.click(dashboard.menuDashboard);
         await page.click(dashboard.subMenuDashboardGeneral);
         await login.select("General");
-        const adminDashboard = new adminDashboardPage(page);
-        const dashTimesheets = await adminDashboard.check_inDataCounter();
+        const employeeDashboard = new employeeDashboardPage(page);
+        const dashTimesheets = await employeeDashboard.check_inDataCounter();
         expect (dashTimesheets).toStrictEqual(actualTimesheets);
     })
 })
