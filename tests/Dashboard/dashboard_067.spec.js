@@ -17,20 +17,20 @@ test.beforeEach(async ({ page }) => {
     await page.goto('https://app-staging.velorona.net/');
 });
 
-test.describe('Verify data of the User (By Status) Submodule within User Page', () => {
-    test('dashboard_026 Company Admin', async ({ page }) => {
+test.describe('Verify data of the User (By Role) Submodule within User Page', () => {
+    test('dashboard_028 Payroll Admin', async ({ page }) => {
         const login = new loginPage(page);
-        await login.login(loginData.valid.admin.email, loginData.valid.admin.password);
+        await login.login(loginData.valid.payroll.email, loginData.valid.payroll.password);
         await login.select("Welcome");
         const dashboard = new dashboardPage(page);
-        await page.click(dashboard.companySwitchButton);
-        await page.click(dashboard.nextCompany);
+        // await page.click(dashboard.companySwitchButton);
+        // await page.click(dashboard.nextCompany);
         await login.select("Welcome");
-        const actualUserStatus = await dashboard.userStatusDataCounter();
+        const actualUserRoles = await dashboard.userRolesDataCounter();
         await page.click(dashboard.menuDashboard);
         await page.click(dashboard.subMenuDashboardUsers);
         const adminDashboard = new adminDashboardPage(page);
-        const dashUserStatus = await adminDashboard.userStatusCounter();
-        expect (dashUserStatus).toStrictEqual(actualUserStatus);
+        const dashUserRoles = await adminDashboard.userRolesCounter();
+        expect (dashUserRoles).toStrictEqual(actualUserRoles);
     })
 })
