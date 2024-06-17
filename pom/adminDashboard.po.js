@@ -35,7 +35,14 @@ exports.adminDashboardPage = class adminDashboardPage {
     this.invoicesPaid = `//body[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[3]/div[1]/div[6]/div[1]/div[5]/div[1]/div[1]/h3[1]`
     this.invoicesIncomplete = `//body[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[3]/div[1]/div[6]/div[1]/div[6]/div[1]/div[1]/h3[1]`
     this.invoicesArchived = `//body[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[3]/div[1]/div[6]/div[1]/div[7]/div[1]/div[1]/h3[1]`
-    
+    this.userStatusTotal = `//body[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/h3[1]`
+    this.userStatusActive = `//body[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/h3[1]`
+    this.userStatusInactive = `//body[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/h3[1]`
+    this.userStatusArchived = `//body[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[4]/div[1]/div[1]/h3[1]`
+    this.userCompanyAdmin = `//body[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/h3[1]`
+    this.userPayrollAdmin = `//body[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[2]/div[1]/div[1]/h3[1]`
+    this.userApprover = `//body[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[3]/div[1]/div[1]/h3[1]`
+    this.userEmployee = `//body[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[4]/div[1]/div[1]/h3[1]`
   }
 
   async clientsCounter() {
@@ -138,5 +145,33 @@ exports.adminDashboardPage = class adminDashboardPage {
 
   async select(message) {
     await this.page.waitForSelector(`//*[contains(text(), '` + message + `')]`);
+  }
+
+  async userStatusCounter() {
+    const totalCount = await this.page.locator(this.userStatusTotal).textContent();
+    const activeCount = await this.page.locator(this.userStatusActive).textContent();
+    const inactiveCount = await this.page.locator(this.userStatusInactive).textContent();
+    const archivedCount = await this.page.locator(this.userStatusArchived).textContent();
+    const result = {
+      total: totalCount,
+      active: activeCount,
+      inactive: inactiveCount,
+      archived: archivedCount
+    }
+    return result;
+  }
+
+  async userRolesCounter() {
+    const companyAdminCount = await this.page.locator(this.userCompanyAdmin).textContent();
+    const payrollAdminCount = await this.page.locator(this.userPayrollAdmin).textContent();
+    const approverCount = await this.page.locator(this.userApprover).textContent();
+    const employeeCount = await this.page.locator(this.userEmployee).textContent();
+    const result = {
+      companyAdmin: companyAdminCount,
+      payrollAdmin: payrollAdminCount,
+      approver: approverCount,
+      employee: employeeCount
+    }
+    return result;
   }
 }

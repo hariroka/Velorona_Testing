@@ -49,7 +49,12 @@ exports.dashboardPage = class dashboardPage {
     this.overdueTab = `//button[normalize-space()='Overdue']`
     this.paidTab = `//button[normalize-space()='Paid']`
     this.incompleteTab = `//button[normalize-space()='Incomplete']`
+    this.invitedTab = `//button[normalize-space()='Invited']`
     this.archivedTab = `//button[normalize-space()='Archived']`
+    this.companyAdminTab = `//button[normalize-space()='Company Admin']`
+    this.payrollAdminTab = `//button[normalize-space()='Payroll Admin']`
+    this.approverTab = `//button[normalize-space()='Approver']`
+    this.employeeTab = `//button[normalize-space()='Employee']`
     this.companySwitchButton = `//div[@class='MuiBox-root css-1mocby8']`
     // this.nextCompany = `//body[1]/div[3]/div[3]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/a[2]/li[1]/div[2]`
     this.nextCompany = `//span[normalize-space()='ORIENT']`
@@ -628,7 +633,7 @@ exports.dashboardPage = class dashboardPage {
     return result;
   }
 
-  
+
   async invoicesDataCounter() {
     await this.page.click(this.menuInvoices);
     await this.page.click(this.subMenuInvoicesGeneral);
@@ -755,5 +760,171 @@ exports.dashboardPage = class dashboardPage {
     totalCount = parseInt(totalCount1) + parseInt(totalCount2) + parseInt(totalCount3) + parseInt(totalCount4);
     totalCount = totalCount.toString();
     return totalCount;
+  }
+
+
+  async userStatusDataCounter() {
+    await this.page.click(this.menuUsers);
+    let totalCount, activeCount, inactiveCount, invitedCount, archivedCount;
+
+    await this.page.click(this.allTab);
+    await this.page.waitForTimeout(500);
+    await this.select("All Users");
+    if (await this.page.isVisible("No Data")) {
+      await this.select("No Data");
+      totalCount = "0";
+      totalCount = await this.count(totalCount);
+    }
+    else{
+      await this.select("Rows per page:");
+      await this.page.waitForTimeout(1000);
+      totalCount = await this.page.locator(this.timesheetTotal).textContent();
+      totalCount = await this.count(totalCount);
+    }
+
+    await this.page.click(this.activeTab);
+    await this.page.waitForTimeout(500);
+    await this.select("All Users");
+    if (await this.page.isVisible("No Data")) {
+      await this.select("No Data");
+      activeCount = "0";
+      activeCount = await this.count(activeCount);
+    }
+    else{
+      await this.select("Rows per page:");
+      await this.page.waitForTimeout(1000);
+      activeCount = await this.page.locator(this.timesheetTotal).textContent();
+      activeCount = await this.count(activeCount);
+    }
+
+    await this.page.click(this.inactiveTab);
+    await this.page.waitForTimeout(500);
+    await this.select("All Users");
+    if (await this.page.isVisible("No Data")) {
+      await this.select("No Data");
+      inactiveCount = "0";
+      inactiveCount = await this.count(inactiveCount);
+    }
+    else{
+      await this.select("Rows per page:");
+      await this.page.waitForTimeout(1000);
+      inactiveCount = await this.page.locator(this.timesheetTotal).textContent();
+      inactiveCount = await this.count(inactiveCount);
+    }
+
+    await this.page.click(this.invitedTab);
+    await this.page.waitForTimeout(500);
+    await this.select("All Users");
+    if (await this.page.isVisible("No Data")) {
+      await this.select("No Data");
+      invitedCount = "0";
+      invitedCount = await this.count(invitedCount);
+    }
+    else{
+      await this.select("Rows per page:");
+      await this.page.waitForTimeout(1000);
+      invitedCount = await this.page.locator(this.timesheetTotal).textContent();
+      invitedCount = await this.count(invitedCount);
+    }
+
+    await this.page.click(this.archivedTab);
+    await this.page.waitForTimeout(500);
+    await this.select("All Users");
+    if (await this.page.isVisible("No Data")) {
+      await this.select("No Data");
+      archivedCount = "0";
+      archivedCount = await this.count(archivedCount);
+    }
+    else{
+      await this.select("Rows per page:");
+      await this.page.waitForTimeout(1000);
+      archivedCount = await this.page.locator(this.timesheetTotal).textContent();
+      archivedCount = await this.count(archivedCount);
+    }
+
+    inactiveCount = String(parseInt(inactiveCount) - parseInt(invitedCount));
+    totalCount = String(parseInt(totalCount) - parseInt(invitedCount));
+
+    const result = {
+      total: totalCount,
+      active: activeCount,
+      inactive: inactiveCount,
+      archived: archivedCount
+    }
+    return result;
+  }
+  
+
+  async userRolesDataCounter() {
+    await this.page.click(this.menuUsers);
+    let companyAdminCount, payrollAdminCount, approverCount, employeeCount;
+
+    await this.page.click(this.companyAdminTab);
+    await this.page.waitForTimeout(500);
+    await this.select("All Users");
+    if (await this.page.isVisible("No Data")) {
+      await this.select("No Data");
+      companyAdminCount = "0";
+      companyAdminCount = await this.count(companyAdminCount);
+    }
+    else{
+      await this.select("Rows per page:");
+      await this.page.waitForTimeout(1000);
+      companyAdminCount = await this.page.locator(this.timesheetTotal).textContent();
+      companyAdminCount = await this.count(companyAdminCount);
+    }
+
+    await this.page.click(this.payrollAdminTab);
+    await this.page.waitForTimeout(500);
+    await this.select("All Users");
+    if (await this.page.isVisible("No Data")) {
+      await this.select("No Data");
+      payrollAdminCount = "0";
+      payrollAdminCount = await this.count(payrollAdminCount);
+    }
+    else{
+      await this.select("Rows per page:");
+      await this.page.waitForTimeout(1000);
+      payrollAdminCount = await this.page.locator(this.timesheetTotal).textContent();
+      payrollAdminCount = await this.count(payrollAdminCount);
+    }
+
+    await this.page.click(this.approverTab);
+    await this.page.waitForTimeout(500);
+    await this.select("All Users");
+    if (await this.page.isVisible("No Data")) {
+      await this.select("No Data");
+      approverCount = "0";
+      approverCount = await this.count(approverCount);
+    }
+    else{
+      await this.select("Rows per page:");
+      await this.page.waitForTimeout(1000);
+      approverCount = await this.page.locator(this.timesheetTotal).textContent();
+      approverCount = await this.count(approverCount);
+    }
+
+    await this.page.click(this.employeeTab);
+    await this.page.waitForTimeout(500);
+    await this.select("All Users");
+    if (await this.page.isVisible("No Data")) {
+      await this.select("No Data");
+      employeeCount = "0";
+      employeeCount = await this.count(employeeCount);
+    }
+    else{
+      await this.select("Rows per page:");
+      await this.page.waitForTimeout(1000);
+      employeeCount = await this.page.locator(this.timesheetTotal).textContent();
+      employeeCount = await this.count(employeeCount);
+    }
+
+    const result = {
+      companyAdmin: companyAdminCount,
+      payrollAdmin: payrollAdminCount,
+      approver: approverCount,
+      employee: employeeCount
+    }
+    return result;
   }
 }
