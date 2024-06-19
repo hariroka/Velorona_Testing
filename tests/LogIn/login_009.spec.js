@@ -8,6 +8,7 @@ const { forgotPassPage } = require('../../pom/forgotPass.po.js');
 
 test.beforeEach(async ({ page }) => {
     await page.goto('/');
+    await page.goto('/');
     const login = new loginPage(page);
     await login.forgotPass();
 });

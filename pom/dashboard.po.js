@@ -6,7 +6,7 @@ exports.dashboardPage = class dashboardPage {
     this.user1= `//button[@class='MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-zf0vz6']`;
     this.user2 = `(//div[@class='MuiAvatar-root MuiAvatar-circular css-1s5tk1l'])[1]`;
     this.logOutButton = `//li[normalize-space()='Logout']`;
-    this.backToLogin = `//button[@id=':r3:']`;
+    this.backToLogin = `//button[@id=':r2:']`;
     this.expand = `//button[@class='MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall css-1rm9whg']//*[name()='svg']`
     this.shrink = `//button[@type='button']//*[name()='svg']//*[name()='path' and contains(@fill,'currentCol')]`
     this.menuDashboard = `//span[normalize-space()='Dashboard']`

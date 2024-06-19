@@ -5,6 +5,7 @@ const { loginPage } = require('../../pom/login.po.js');
 
 test.beforeEach(async ({ page }) => {
     await page.goto('/');
+    await page.goto('/');
 });
 
 test.describe('Verify OTP Page', () => {

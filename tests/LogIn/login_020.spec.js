@@ -6,6 +6,7 @@ const { dashboardPage } = require('../../pom/dashboard.po.js');
 
 test.beforeEach(async ({ page }) => {
     await page.goto('/');
+    await page.goto('/');
 });
 
 test.describe('Verify optional OTP for Remember me enabled', () => {
