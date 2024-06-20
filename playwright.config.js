@@ -12,8 +12,8 @@ const { defineConfig, devices } = require('@playwright/test');
  */
 module.exports = defineConfig({
   // testDir: './tests',
-  // testDir: './tests/Dashboard',
-  testDir: './tests/Login',
+  testDir: './tests/Dashboard',
+  // testDir: './tests/Login',
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */

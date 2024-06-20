@@ -13,7 +13,7 @@ const { adminDashboardPage } = require('../../pom/adminDashboard.po.js');
 
 test.beforeEach(async ({ page }) => {
     await page.goto('/');
-    await page.goto('https://app-staging.velorona.net/');
+    await page.goto('/');
 });
 
 test.describe('Verify data of the Projects Submodule within General Page', () => {

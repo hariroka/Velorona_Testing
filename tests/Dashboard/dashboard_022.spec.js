@@ -14,7 +14,7 @@ const { log } = require('console');
 
 test.beforeEach(async ({ page }) => {
     await page.goto('/');
-    await page.goto('https://app-staging.velorona.net/');
+    await page.goto('/');
 });
 
 test.describe('Verify data of the Invoices Submodule within General Page', () => {

@@ -15,6 +15,8 @@ exports.employeeDashboardPage = class employeeDashboardPage {
     this.check_inApproved = `//body[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[3]/div[1]/div[2]/div[1]/div[4]/div[1]/div[1]/h3[1]`
     this.check_inRejected = `//body[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[3]/div[1]/div[2]/div[1]/div[5]/div[1]/div[1]/h3[1]`
     this.check_inArchived = `//body[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[3]/div[1]/div[2]/div[1]/div[6]/div[1]/div[1]/h3[1]`
+    this.googlePlayStore = `//img[@alt='Get on Google P   lay Store']`;
+    this.appleAppStore = `//img[@alt='Get on App Store']`;
   }
   async timesheetDataCounter() {
     const totalCount = await this.page.locator(this.timesheetTotal).textContent();
@@ -32,6 +34,7 @@ exports.employeeDashboardPage = class employeeDashboardPage {
     }
     return result;
   }
+
   async check_inDataCounter() {
     const totalCount = await this.page.locator(this.check_inTotal).textContent();
     const openCount = await this.page.locator(this.check_inOpen).textContent();
@@ -51,5 +54,14 @@ exports.employeeDashboardPage = class employeeDashboardPage {
 
   async select(message) {
     await this.page.waitForSelector(`//*[contains(text(), '` + message + `')]`);
+  }
+
+  async appDownload(store) {
+    if (store == "Play")  {
+      await this.page.click(this.googlePlayStore);
+    }
+    else if (store == "App")  {
+      await this.page.click(this.appleAppStore);
+    }
   }
 }

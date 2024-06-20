@@ -1,4 +1,4 @@
-const { test, expect } = require('@playwright/test');
+const { test, expect, page } = require('@playwright/test');
 
 const loginData = require(`../../fixtures/fixture.json`);
 const emailError = require(`../../errorMessages/emailErrors.json`);
@@ -16,16 +16,13 @@ test.beforeEach(async ({ page }) => {
     await page.goto('/');
 });
 
-test.describe('Check Expand Button and Shrink Button', () => {
-    test('dashboard_081 Approver', async ({ page }) => {
+test.describe('Verify Apple App Store Button', () => {
+    test('dashboard_0102 Employee', async ({ page }) => {
         const login = new loginPage(page);
-        await login.login(loginData.valid.approver.email, loginData.valid.approver.password);
+        await login.login(loginData.valid.employee.email, loginData.valid.employee.password);
         await login.select("Welcome");
-        const dashboard = new dashboardPage(page);
-        await page.click(dashboard.expand);
-        await page.waitForSelector(`//li[@class='MuiListSubheader-root css-1oe2cyz']`);
-        await page.waitForTimeout(2000);
-        await page.click(dashboard.shrink);
-        await page.waitForTimeout(2000);
+        const employeeDashboard = new employeeDashboardPage(page);
+        await employeeDashboard.appDownload("App");
+        expect(page.url()).toBe('https://apps.apple.com/us/app/velorona/id6470820167'); 
     })
 })
