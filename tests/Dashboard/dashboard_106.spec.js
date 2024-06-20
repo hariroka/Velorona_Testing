@@ -17,7 +17,7 @@ test.beforeEach(async ({ page }) => {
 });
 
 test.describe('Verify View All Button of the Latest Timesheets Submodule within General Page', () => {
-    test('dashboard_092 Employee', async ({ page }) => {
+    test('dashboard_106 Employee', async ({ page }) => {
         const login = new loginPage(page);
         await login.login(loginData.valid.employee.email, loginData.valid.employee.password);
         await login.select("Welcome");
