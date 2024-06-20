@@ -17,7 +17,7 @@ test.beforeEach(async ({ page }) => {
 });
 
 test.describe('Verify data of the Timesheets Submodule within General Page', () => {
-    test('dashboard_0100 Employee - Timesheets', async ({ page }) => {
+    test('dashboard_100 Employee - Timesheets', async ({ page }) => {
         const login = new loginPage(page);
         await login.login(loginData.valid.employee.email, loginData.valid.employee.password);
         await login.select("Welcome");
