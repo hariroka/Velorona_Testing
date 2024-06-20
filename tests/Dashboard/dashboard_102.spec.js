@@ -17,7 +17,7 @@ test.beforeEach(async ({ page }) => {
 });
 
 test.describe('Verify Google Play Store Button', () => {
-    test('dashboard_0102 Employee', async ({ page }) => {
+    test('dashboard_102 Employee', async ({ page }) => {
         const login = new loginPage(page);
         await login.login(loginData.valid.employee.email, loginData.valid.employee.password);
         await login.select("Welcome");

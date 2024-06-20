@@ -3,20 +3,21 @@ const requirement = require('playwright/test');
 exports.employeeDashboardPage = class employeeDashboardPage {
   constructor(page) {
     this.page = page;
-    this.timesheetTotal = `//body[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/h3[1]`
-    this.timesheetOpen = `//body[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/h3[1]`
-    this.timesheetSubmitted = `//body[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/h3[1]`
-    this.timesheetApproved = `//body[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[4]/div[1]/div[1]/h3[1]`
-    this.timesheetRejected = `//body[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[5]/div[1]/div[1]/h3[1]`
-    this.timesheetArchived = `//body[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[6]/div[1]/div[1]/h3[1]`
-    this.check_inTotal = `//body[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[3]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/h3[1]`
-    this.check_inOpen = `//body[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[3]/div[1]/div[2]/div[1]/div[2]/div[1]/div[1]/h3[1]`
-    this.check_inSubmitted = `//body[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[3]/div[1]/div[2]/div[1]/div[3]/div[1]/div[1]/h3[1]`
-    this.check_inApproved = `//body[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[3]/div[1]/div[2]/div[1]/div[4]/div[1]/div[1]/h3[1]`
-    this.check_inRejected = `//body[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[3]/div[1]/div[2]/div[1]/div[5]/div[1]/div[1]/h3[1]`
-    this.check_inArchived = `//body[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[3]/div[1]/div[2]/div[1]/div[6]/div[1]/div[1]/h3[1]`
+    this.timesheetTotal = `//body[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/h3[1]`;
+    this.timesheetOpen = `//body[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/h3[1]`;
+    this.timesheetSubmitted = `//body[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/h3[1]`;
+    this.timesheetApproved = `//body[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[4]/div[1]/div[1]/h3[1]`;
+    this.timesheetRejected = `//body[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[5]/div[1]/div[1]/h3[1]`;
+    this.timesheetArchived = `//body[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[6]/div[1]/div[1]/h3[1]`;
+    this.check_inTotal = `//body[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[3]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/h3[1]`;
+    this.check_inOpen = `//body[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[3]/div[1]/div[2]/div[1]/div[2]/div[1]/div[1]/h3[1]`;
+    this.check_inSubmitted = `//body[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[3]/div[1]/div[2]/div[1]/div[3]/div[1]/div[1]/h3[1]`;
+    this.check_inApproved = `//body[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[3]/div[1]/div[2]/div[1]/div[4]/div[1]/div[1]/h3[1]`;
+    this.check_inRejected = `//body[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[3]/div[1]/div[2]/div[1]/div[5]/div[1]/div[1]/h3[1]`;
+    this.check_inArchived = `//body[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[3]/div[1]/div[2]/div[1]/div[6]/div[1]/div[1]/h3[1]`;
     this.googlePlayStore = `//img[@alt='Get on Google P   lay Store']`;
     this.appleAppStore = `//img[@alt='Get on App Store']`;
+    this.viewAll = `//span[normalize-space()='View All']`;
   }
   async timesheetDataCounter() {
     const totalCount = await this.page.locator(this.timesheetTotal).textContent();
@@ -63,5 +64,10 @@ exports.employeeDashboardPage = class employeeDashboardPage {
     else if (store == "App")  {
       await this.page.click(this.appleAppStore);
     }
+  }
+
+  async clickViewAll() {
+    await this.page.click(this.viewAll);
+    await this.select("All Timesheets")
   }
 }

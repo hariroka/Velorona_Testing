@@ -17,7 +17,7 @@ test.beforeEach(async ({ page }) => {
 });
 
 test.describe('Verify Apple App Store Button', () => {
-    test('dashboard_0102 Approver', async ({ page }) => {
+    test('dashboard_089 Approver', async ({ page }) => {
         const login = new loginPage(page);
         await login.login(loginData.valid.approver.email, loginData.valid.approver.password);
         await login.select("Welcome");
