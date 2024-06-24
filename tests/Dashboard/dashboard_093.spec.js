@@ -20,6 +20,6 @@ test.describe('Verify Dashboard Page', () => {
     test('dashboard_093 Employee', async ({ page }) => {
         const login = new loginPage(page);
         await login.login(loginData.valid.employee.email, loginData.valid.employee.password);
-        await login.select("You are employee");
+        await login.select("You are an employee");
     })
 })

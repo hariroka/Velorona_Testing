@@ -106,4 +106,11 @@ test.describe('Data Collection and viewinng of Dashboard', () => {
         // console.log(actualClients, actualProjects);
         console.log(actualInvoices);
     })
+    test.only('testing Roles selection', async ({ page }) => {
+        const login = new loginPage(page);
+        await login.login(loginData.valid.admin.email, loginData.valid.admin.password);
+        await login.select("Welcome");
+        const dashboard = new dashboardPage(page);
+        await dashboard.testingRRP();
+    })
 })

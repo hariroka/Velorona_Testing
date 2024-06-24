@@ -20,6 +20,6 @@ test.describe('Verify Dashboard Page', () => {
     test('dashboard_040 Payroll Admin', async ({ page }) => {
         const login = new loginPage(page);
         await login.login(loginData.valid.payroll.email, loginData.valid.payroll.password);
-        await login.select("You are payroll admin");
+        await login.select("You are a payroll admin");
     })
 })
