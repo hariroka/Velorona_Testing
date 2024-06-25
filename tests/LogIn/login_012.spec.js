@@ -24,7 +24,7 @@ test.describe('Verify Password criteria and matching', () => {
         await forgot.resetPass()
         await forgot.select(passError.missmatch)
     })
-    test('Login_011 Criteria not fulfilled', async ({ page }) => {
+    test('Login_012 Criteria not fulfilled', async ({ page }) => {
         const forgot = new forgotPassPage(page);
         await forgot.resetPassword(loginData.valid.user.email, "For security reasons, an OTP has been sent to your email.");
         await forgot.otpWrite('')

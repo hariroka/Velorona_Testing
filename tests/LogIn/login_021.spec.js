@@ -10,14 +10,14 @@ test.beforeEach(async ({ page }) => {
 });
 
 test.describe(`Verify 'No Roles Found' page for new user`, () => {
-    test('Login_020 No Roles Found', async ({ page }) => {
+    test('Login_021 No Roles Found', async ({ page }) => {
         const login = new loginPage(page);
         await login.login(data.newUser.email, data.newUser.password); 
         const otpPass = '000000'
         await login.otpWrite(otpPass);
         await login.select("No Roles Found!");
     })
-    test ('Login_020 Go to Login', async ({ page }) => {
+    test ('Login_021 Go to Login', async ({ page }) => {
         const login = new loginPage(page);
         await login.login(data.newUser.email, data.newUser.password); 
         const otpPass = '000000'

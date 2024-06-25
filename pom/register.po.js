@@ -1,9 +1,9 @@
 const requirement = require('playwright/test');
 
-exports.registerPage = class loginPage {
+exports.registerPage = class registerPage {
     constructor(page) {
         this.page = page;
-        this.header1 = `//a[normalize-space()='Company Register']`;
+        this.loginButton = `//a[normalize-space()='Login']`
         this.companyNameInput = `//input[@id=':r3:']`;
         this.companyEmailInput = `//input[@id=':r4:']`;
         this.companyPhoneInput = `//input[@id=':r5:']`;
@@ -16,6 +16,7 @@ exports.registerPage = class loginPage {
         this.companyTimezoneSelect = `//input[@id=':rd:']`;
         this.submitButton = `//button[@id=':rf:']`;
         this.nextButton = `//button[normalize-space()='Next']`;
+        this.backButton = `//button[normalize-space()='Back']`;
         this.AdminFirtNameInput = `//input[@id=':rd:']`;
         this.AdminMiddleNameInput = `//input[@id=':re:']`;
         this.AdminLastNameInput = `//input[@id=':ri:']`;
@@ -31,6 +32,11 @@ exports.registerPage = class loginPage {
         this.AdminCountrySelect = `//input[@id=':rp:']`;
         this.RegisterButton = `//button[@id=':ru:']`;
     }
+
+  async select(message) {
+    await this.page.waitForSelector(`//*[contains(text(), '` + message + `')]`);
+  }
+
   async countrySelect(country) {
     await this.page.click(this.companyCountrySelect);
     await this.page.fill(this.companyCountrySelect, country); 
@@ -38,11 +44,13 @@ exports.registerPage = class loginPage {
     await this.page.click(`//li[contains(., '`+country+`')]`);
     await this.page.waitForTimeout(2000);
   }
+
   async countrySelectAll(number) {
     await this.page.click(this.companyCountrySelect);
     await this.page.click(`//li[@id=':rb:-option-`+number+`']`);
     await this.page.waitForTimeout(500);
   }
+
   async fillCompanyDetails(companyName, companyEmail, companyPhone, companyStreet, companySuite, companyCity, companyState, companyZipcode, companyCountry) {
     await this.page.fill(this.companyNameInput, companyName);
     await this.page.fill(this.companyEmailInput, companyEmail);
@@ -55,14 +63,17 @@ exports.registerPage = class loginPage {
     await this.countrySelect(companyCountry);
     // await this.page.fill(this.companyTimezoneSelect, companyTimezone);
   }
+
   async clickNextButton() { 
     await this.page.click(this.nextButton);
     await this.page.waitForSelector(`//h6[normalize-space()='Must include at least 8 characters']`);
   }
+
   async clickRegisterButton() {
     await this.page.click(this.RegisterButton); 
     await this.page.waitForSelector(`//a[normalize-space()='Registeration Successful!']`);
   }
+
   async fillAdminDetails(AdminFirtName, AdminMiddleName, AdminLastName, AdminEmail, AdminPhone, Password, ConfirmPaswword, AdminStreet, AdminApartment, AdminCity, AdminState, AdminZipcode, AdminCountry) {
     await this.page.fill(this.AdminFirtNameInput, AdminFirtName);
     await this.page.fill(this.AdminMiddleNameInput, AdminMiddleName);
@@ -77,5 +88,10 @@ exports.registerPage = class loginPage {
     await this.page.fill(this.AdminStateInput, AdminState);
     await this.page.fill(this.AdminZipcodeInput, AdminZipcode);
     await this.countrySelect(AdminCountry);
+  }
+
+  async viewPages(pageName) {
+    await this.page.click(`//*[contains(text(), '` + pageName + `')]`);
+    await this.page.waitForSelector(`//h1[normalize-space()='` + pageName + `']`)
   }
 }

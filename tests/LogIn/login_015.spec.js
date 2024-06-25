@@ -9,7 +9,7 @@ test.beforeEach(async ({ page }) => {
 });
 
 test.describe('Verify OTP Page', () => {
-    test('Login_017', async ({ page }) => {
+    test('Login_015', async ({ page }) => {
         const login = new loginPage(page);
         await login.login(data.valid.user.email, data.valid.user.password); 
         const selectMessage = 'OTP has been sent to your email';

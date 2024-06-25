@@ -19,7 +19,8 @@
         "user":{
             "email": "admin@clinchtech.com",
             "password": "P@$$W0Rd",
-            "newPassword": "P@$$W0Rd"
+            "newPassword1": "P@$$W0rd",
+            "newPassword2": "P@$$W0Rd"
         }
     },
     "invalid":{

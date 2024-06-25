@@ -26,11 +26,10 @@ test.describe('Verify data of the Invoices Submodule within General Page', () =>
         // await page.click(dashboard.nextCompany);
         await login.select("Welcome");
         const actualInvoices = await dashboard.invoicesDataCounter();
-        await page.click(dashboard.menuClients);
-        await login.select("All Clients");
-        await page.click(dashboard.menuDashboard);
-        await page.click(dashboard.subMenuDashboardGeneral);
-        await login.select("General");
+        // await page.click(dashboard.menuDashboard);
+        // await page.click(dashboard.subMenuDashboardGeneral);
+        await page.goto('/');
+        await login.select("Welcome");
         const adminDashboard = new adminDashboardPage(page);
         const dashInvoices = await adminDashboard.invoicesCounter();
         expect (dashInvoices).toStrictEqual(actualInvoices);

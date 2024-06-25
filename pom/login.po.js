@@ -17,6 +17,7 @@ exports.loginPage = class loginPage {
     this.register = `//a[normalize-space()='Register Now']`;
     this.rememberMe = `//input[@name='rememberMe']`;
   }
+
   async login(username, password) {
     if (username != '') {
       await this.page.fill(this.usernameInput, username);
@@ -26,6 +27,7 @@ exports.loginPage = class loginPage {
     }
     await this.page.click(this.loginButton);
   }
+
   async otpWrite(otp) {
     await this.page.waitForSelector(`//*[contains(text(), 'OTP has been sent to your email')]`);
     if (otp != '') {
@@ -38,17 +40,21 @@ exports.loginPage = class loginPage {
     }
     await this.page.click(this.otpLoginButton);
   }
+
   async select(message) {
     await this.page.waitForSelector(`//*[contains(text(), '` + message + `')]`);
   }
+
   async forgotPass() {
     await this.page.click(this.forgotPassword);
     await this.page.waitForSelector(`//*[contains(text(), 'Forgot your password?')]`);
   }
+
   async registerNow() {
     await this.page.click(this.register);
     await this.page.waitForSelector(`//*[contains(text(), 'Company Register')]`);
   }
+
   async loginWithRememberMe(username, password) {
     if (username != '') {
       await this.page.fill(this.usernameInput, username);
@@ -59,4 +65,5 @@ exports.loginPage = class loginPage {
     await this.page.click(this.rememberMe);
     await this.page.click(this.loginButton);
   }
+  
 }
