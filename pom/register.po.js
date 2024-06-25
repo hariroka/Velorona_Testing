@@ -1,4 +1,4 @@
-const requirement = require('playwright/test');
+const { expect } = require('playwright/test');
 
 exports.registerPage = class registerPage {
     constructor(page) {
@@ -17,20 +17,20 @@ exports.registerPage = class registerPage {
         this.submitButton = `//button[@id=':rf:']`;
         this.nextButton = `//button[normalize-space()='Next']`;
         this.backButton = `//button[normalize-space()='Back']`;
-        this.AdminFirtNameInput = `//input[@id=':rd:']`;
-        this.AdminMiddleNameInput = `//input[@id=':re:']`;
+        this.AdminFirtNameInput = `//input[@id=':rg:']`;
+        this.AdminMiddleNameInput = `//input[@id=':rh:']`;
         this.AdminLastNameInput = `//input[@id=':ri:']`;
         this.AdminEmailInput = `//input[@id=':rj:']`;
-        this.AdminPhoneInput = `//input[@id=':rh:']`;
-        this.PasswordInput = `//input[@id=':ri:']`;
-        this.ConfirmPaswwordInput = `//input[@id=':rj:']`;
-        this.AdminStreetInput = `//input[@id=':rk:']`;
-        this.AdminApartmentInput = `//input[@id=':rl:']`;
-        this.AdminCityInput = `//input[@id=':rm:']`;
-        this.AdminStateInput = `//input[@id=':rn:']`;
-        this.AdminZipcodeInput = `//input[@id=':ro:']`;
-        this.AdminCountrySelect = `//input[@id=':rp:']`;
-        this.RegisterButton = `//button[@id=':ru:']`;
+        this.AdminPhoneInput = `//input[@id=':rk:']`;
+        this.PasswordInput = `//input[@id=':rl:']`;
+        this.ConfirmPaswwordInput = `//input[@id=':rm:']`;
+        this.AdminStreetInput = `//input[@id=':rn:']`;
+        this.AdminApartmentInput = `//input[@id=':ro:']`;
+        this.AdminCityInput = `//input[@id=':rp:']`;
+        this.AdminStateInput = `//input[@id=':rq:']`;
+        this.AdminZipcodeInput = `//input[@id=':rr:']`;
+        this.AdminCountrySelect = `//input[@id=':rs:']`;
+        this.registerButton = `//button[@id=':ru:']`;
     }
 
   async select(message) {
@@ -45,53 +45,90 @@ exports.registerPage = class registerPage {
     await this.page.waitForTimeout(2000);
   }
 
+  async dropdownSelector(fieldName, value) {
+    if (fieldName == "Company Country") {
+      await this.page.click(this.companyCountrySelect);
+      await this.page.fill(this.companyCountrySelect, value);
+    }
+    else if (fieldName == "Admin Country") {
+      await this.page.click(this.AdminCountrySelect);
+      await this.page.fill(this.AdminCountrySelect, value);
+    }
+    else {
+      await this.page.click(this.companyTimezoneSelect);
+      await this.page.fill(this.companyTimezoneSelect, value);
+    } 
+    await this.page.waitForSelector(`//li[contains(., '`+value+`')]`);
+    await this.page.click(`//li[contains(., '`+value+`')]`);
+  }
+
   async countrySelectAll(number) {
     await this.page.click(this.companyCountrySelect);
     await this.page.click(`//li[@id=':rb:-option-`+number+`']`);
     await this.page.waitForTimeout(500);
   }
 
-  async fillCompanyDetails(companyName, companyEmail, companyPhone, companyStreet, companySuite, companyCity, companyState, companyZipcode, companyCountry) {
-    await this.page.fill(this.companyNameInput, companyName);
-    await this.page.fill(this.companyEmailInput, companyEmail);
+  async fillCompanyDetails(companyName, companyEmail, companyPhone, companyStreet, companySuite, companyCity, companyState, companyZipcode, companyCountry, companyTimezone) {
+    const random = this.fourDigit()
+    if (companyPhone == "") {
+      companyPhone = random+random+random;
+    }
+    if (companyZipcode == "") {
+      companyZipcode = random;
+    }
+    await this.page.fill(this.companyNameInput, companyName + random);
+    await this.page.fill(this.companyEmailInput, random + companyEmail);
     await this.page.fill(this.companyPhoneInput, companyPhone);
-    await this.page.fill(this.companyStreetInput, companyStreet);
+    await this.page.fill(this.companyStreetInput, companyStreet + random);
     await this.page.fill(this.companySuiteInput, companySuite);
-    await this.page.fill(this.companyCityInput, companyCity);
-    await this.page.fill(this.companyStateInput, companyState);
+    await this.page.fill(this.companyCityInput, companyCity + random);
+    await this.page.fill(this.companyStateInput, companyState + random);
     await this.page.fill(this.companyZipcodeInput, companyZipcode);
-    await this.countrySelect(companyCountry);
-    // await this.page.fill(this.companyTimezoneSelect, companyTimezone);
-  }
-
-  async clickNextButton() { 
-    await this.page.click(this.nextButton);
-    await this.page.waitForSelector(`//h6[normalize-space()='Must include at least 8 characters']`);
+    await this.dropdownSelector("Company Country", companyCountry);
+    await this.dropdownSelector("Timezone", companyTimezone);
   }
 
   async clickRegisterButton() {
-    await this.page.click(this.RegisterButton); 
+    await this.page.click(this.registerButton); 
     await this.page.waitForSelector(`//a[normalize-space()='Registeration Successful!']`);
   }
 
   async fillAdminDetails(AdminFirtName, AdminMiddleName, AdminLastName, AdminEmail, AdminPhone, Password, ConfirmPaswword, AdminStreet, AdminApartment, AdminCity, AdminState, AdminZipcode, AdminCountry) {
-    await this.page.fill(this.AdminFirtNameInput, AdminFirtName);
+    const random = this.fourDigit()
+    if (AdminPhone == "") {
+      AdminPhone = random+random+random;
+    }
+    if (AdminZipcode == "") {
+      AdminZipcode = random;
+    }
+    await this.page.fill(this.AdminFirtNameInput, AdminFirtName + random);
     await this.page.fill(this.AdminMiddleNameInput, AdminMiddleName);
-    await this.page.fill(this.AdminLastNameInput, AdminLastName);
-    await this.page.fill(this.AdminEmailInput, AdminEmail);
+    await this.page.fill(this.AdminLastNameInput, AdminLastName + random);
+    await this.page.fill(this.AdminEmailInput, random + AdminEmail);
     await this.page.fill(this.AdminPhoneInput, AdminPhone);
     await this.page.fill(this.PasswordInput, Password);
     await this.page.fill(this.ConfirmPaswwordInput, ConfirmPaswword);
-    await this.page.fill(this.AdminStreetInput, AdminStreet);
+    await this.page.fill(this.AdminStreetInput, AdminStreet + random);
     await this.page.fill(this.AdminApartmentInput, AdminApartment);
-    await this.page.fill(this.AdminCityInput, AdminCity);
-    await this.page.fill(this.AdminStateInput, AdminState);
+    await this.page.fill(this.AdminCityInput, AdminCity + random);
+    await this.page.fill(this.AdminStateInput, AdminState + random);
     await this.page.fill(this.AdminZipcodeInput, AdminZipcode);
-    await this.countrySelect(AdminCountry);
+    await this.dropdownSelector("Admin Country", AdminCountry);
   }
 
   async viewPages(pageName) {
     await this.page.click(`//*[contains(text(), '` + pageName + `')]`);
     await this.page.waitForSelector(`//h1[normalize-space()='` + pageName + `']`)
   }
+
+  fourDigit() {
+    return (Math.floor(1000 + Math.random() * 9000)).toString();
+  }
+
+  async isPasswordInputRed() {
+    const color = await this.page.$eval(this.PasswordInput, el => {
+        return window.getComputedStyle(el).borderColor;
+    });
+    expect(color).toBe('rgb(33, 43, 54)'); // Do not use anchor CSS values in your tests
+}
 }

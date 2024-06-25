@@ -1,4 +1,5 @@
 {
     "required": "Password is required",
-    "missmatch": "Passwords must match"
+    "missmatch": "Passwords must match",
+    "registerMissmatch": "Passwords do not match"
 }

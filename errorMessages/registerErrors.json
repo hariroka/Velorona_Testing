@@ -1,0 +1,5 @@
+{
+    "isRequired": " is required",
+    "validEmail": "Email must be a valid email address",
+    "isNumber": " must be a number"
+}

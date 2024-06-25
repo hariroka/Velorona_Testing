@@ -42,5 +42,53 @@
     "newUser":{
         "email": "newUser@clinchtech.com",
         "password": "APSnzzL6"
+    },
+    "invalidCompanyDetails":{
+        "Name": "Company",
+        "Email": "email",
+        "Phone": "phone",
+        "Street": "Address",
+        "City": "Add",
+        "State": "Add",
+        "ZipCode": "Zip",
+        "Country": "Nepal",
+        "Timezone": "EST"
+    },
+    "validCompanyDetails":{
+        "Name": "Company ",
+        "Email": "@email.com",
+        "Phone": "",
+        "Street": "Street ",
+        "City": "City ",
+        "State": "State ",
+        "ZipCode": "",
+        "Country": "Nepal",
+        "Timezone": "EST"
+    },
+    "invalidAdminDetails":{
+        "FirstName": "Company ",
+        "LastName": "Last ",
+        "Email": "email ",
+        "Phone": "phone ",
+        "Password": "Pd",
+        "ConfirmPassword": "P@$$Rd",
+        "Street": "Address ",
+        "City": "Add ",
+        "State": "Add ",
+        "ZipCode": "Zip ",
+        "Country": "Nepal"
+    },
+    "validAdminDetails":{
+        "FirstName": "First ",
+        "LastName": "Last ",
+        "Email": "@email.com",
+        "Phone": "",
+        "Password": "",
+        "ConfirmPassword": "",
+        "Street": "Street ",
+        "City": "City ",
+        "State": "State ",
+        "ZipCode": "",
+        "Country": "Nepal"
     }
 }

@@ -133,35 +133,35 @@ test.describe('Login_012 Verify Password criteria and matching (Forgot Password)
     })
 })
 
-// test.describe('Login_013 Reset Password Successful (Forgot Password)', () => {
-//     test('Login_013 Reset Password Success', async ({ page }) => {
-//         const login = new loginPage(page);
-//         await login.forgotPass();
-//         const forgot = new forgotPassPage(page);
-//         await forgot.resetPassword(loginData.valid.user.email, "For security reasons, an OTP has been sent to your email.");
-//         await forgot.otpWrite("000000")
-//         await forgot.passwordWrite(loginData.valid.user.newPassword1)
-//         await forgot.confirmPasswordWrite(loginData.valid.user.newPassword1)
-//         await forgot.resetPass()
-//         await forgot.select("Password has been reset successfully!")
-//     })
-// })
+test.describe('Login_013 Reset Password Successful (Forgot Password)', () => {
+    test.only('Login_013 Reset Password Success', async ({ page }) => {
+        const login = new loginPage(page);
+        await login.forgotPass();
+        const forgot = new forgotPassPage(page);
+        await forgot.resetPassword(loginData.valid.user.email, "For security reasons, an OTP has been sent to your email.");
+        await forgot.otpWrite("000000")
+        await forgot.passwordWrite(loginData.valid.user.newPassword1)
+        await forgot.confirmPasswordWrite(loginData.valid.user.newPassword1)
+        await forgot.resetPass()
+        await forgot.select("Password has been reset successfully!")
+    })
+})
 
-// test.describe('Login_014 Verify Reset Password Successful Page Components (Forgot Password)', () => {
-//     test('Login_014 Back to login Button', async ({ page }) => {
-//         const login = new loginPage(page);
-//         await login.forgotPass();
-//         const forgot = new forgotPassPage(page);
-//         await forgot.resetPassword(loginData.valid.user.email, "For security reasons, an OTP has been sent to your email.");
-//         await forgot.otpWrite("000000")
-//         await forgot.passwordWrite(loginData.valid.user.newPassword2)
-//         await forgot.confirmPasswordWrite(loginData.valid.user.newPassword2)
-//         await forgot.resetPass()
-//         await forgot.select("Password has been reset successfully!")
-//         await forgot.back()
-//         await forgot.select("User Login")
-//     })
-// })
+test.describe('Login_014 Verify Reset Password Successful Page Components (Forgot Password)', () => {
+    test('Login_014 Back to login Button', async ({ page }) => {
+        const login = new loginPage(page);
+        await login.forgotPass();
+        const forgot = new forgotPassPage(page);
+        await forgot.resetPassword(loginData.valid.user.email, "For security reasons, an OTP has been sent to your email.");
+        await forgot.otpWrite("000000")
+        await forgot.passwordWrite(loginData.valid.user.newPassword2)
+        await forgot.confirmPasswordWrite(loginData.valid.user.newPassword2)
+        await forgot.resetPass()
+        await forgot.select("Password has been reset successfully!")
+        await forgot.back()
+        await forgot.select("User Login")
+    })
+})
 
 test.describe('Login_015 Verify OTP Page', () => {
     test('Login_015', async ({ page }) => {
