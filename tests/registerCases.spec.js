@@ -106,8 +106,8 @@ test.describe('Register_006 Verify Company Register Page Form fields', () => {
 
     register.fillCompanyDetails(
       data.invalidCompanyDetails.Name,
-      data.invalidCompanyDetails.Email,
-      data.invalidCompanyDetails.Phone,
+      data.invalidCompanyDetails.Email1,
+      data.invalidCompanyDetails.Phone1,
       data.invalidCompanyDetails.Street,
       "",
       data.invalidCompanyDetails.City,
@@ -225,8 +225,8 @@ test.describe('Register_010 Verify Company Admin Page Form fields', () => {
       data.invalidAdminDetails.FirstName,
       "",
       data.invalidAdminDetails.LastName,
-      data.invalidAdminDetails.Email,
-      data.invalidAdminDetails.Phone,
+      data.invalidAdminDetails.Email1,
+      data.invalidAdminDetails.Phone1,
       data.invalidAdminDetails.Password,
       data.invalidAdminDetails.ConfirmPassword,
       data.invalidAdminDetails.Street,
@@ -245,6 +245,55 @@ test.describe('Register_010 Verify Company Admin Page Form fields', () => {
     await register.select("Phone" + registerError.isNumber);
     await register.select("Zip" + registerError.isNumber);
     await register.select(passError.registerMissmatch);
+  });
+
+  test('Register_010 Email is invalid', async ({ page }) => {
+    const login = new loginPage(page);
+
+    await login.registerNow();
+
+    const register = new registerPage(page);
+
+    register.fillCompanyDetails(
+      data.validCompanyDetails.Name,
+      data.validCompanyDetails.Email,
+      data.validCompanyDetails.Phone,
+      data.validCompanyDetails.Street,
+      "",
+      data.validCompanyDetails.City,
+      data.validCompanyDetails.State,
+      data.validCompanyDetails.ZipCode,
+      data.validCompanyDetails.Country,
+      data.validCompanyDetails.Timezone
+    )
+    
+    await page.waitForTimeout(1500);
+
+    await page.click(register.nextButton);
+    
+    await expect(page.locator(register.backButton)).toBeEnabled();
+
+    register.fillAdminDetails(
+      data.validAdminDetails.FirstName,
+      "",
+      data.validAdminDetails.LastName,
+      data.invalidAdminDetails.Email2,
+      data.validAdminDetails.Phone,
+      data.valid.user.password,
+      data.valid.user.password,
+      data.validAdminDetails.Street,
+      "",
+      data.validAdminDetails.City,
+      data.validAdminDetails.State,
+      data.validAdminDetails.ZipCode,
+      data.validAdminDetails.Country
+    )
+
+    await page.waitForTimeout(1500);
+
+    await page.click(register.registerButton);
+
+    await register.select(registerError.invalidEmail);
   });
 });
 
@@ -278,17 +327,17 @@ test.describe('Register_011 Verify Password mismatch', () => {
     register.fillAdminDetails(
       data.invalidAdminDetails.FirstName,
       "",
-      data.invalidAdminDetails.LastName,
-      data.invalidAdminDetails.Email,
-      data.invalidAdminDetails.Phone,
+      data.validAdminDetails.LastName,
+      data.validAdminDetails.Email,
+      data.validAdminDetails.Phone,
       data.valid.user.password,
       data.invalid.password,
-      data.invalidAdminDetails.Street,
+      data.validAdminDetails.Street,
       "",
-      data.invalidAdminDetails.City,
-      data.invalidAdminDetails.State,
-      data.invalidAdminDetails.ZipCode,
-      data.invalidAdminDetails.Country
+      data.validAdminDetails.City,
+      data.validAdminDetails.State,
+      data.validAdminDetails.ZipCode,
+      data.validAdminDetails.Country
     )
 
     await page.waitForTimeout(1000);
@@ -369,7 +418,7 @@ test.describe('Register_012 Registration Completed', () => {
       data.validCompanyDetails.Timezone
     )
     
-    await page.waitForTimeout(1000);
+    await page.waitForTimeout(1500);
 
     await page.click(register.nextButton);
     
@@ -391,7 +440,7 @@ test.describe('Register_012 Registration Completed', () => {
       data.validAdminDetails.Country
     )
 
-    await page.waitForTimeout(1000);
+    await page.waitForTimeout(1500);
 
     await page.click(register.registerButton);
 

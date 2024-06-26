@@ -69,15 +69,15 @@ exports.registerPage = class registerPage {
   }
 
   async fillCompanyDetails(companyName, companyEmail, companyPhone, companyStreet, companySuite, companyCity, companyState, companyZipcode, companyCountry, companyTimezone) {
-    const random = this.fourDigit()
+    const random = this.digitgenerator()
     if (companyPhone == "") {
-      companyPhone = random+random+random;
+      companyPhone = this.digitgenerator(10);
     }
     if (companyZipcode == "") {
       companyZipcode = random;
     }
     await this.page.fill(this.companyNameInput, companyName + random);
-    await this.page.fill(this.companyEmailInput, random + companyEmail);
+    await this.page.fill(this.companyEmailInput, "user" + random + companyEmail);
     await this.page.fill(this.companyPhoneInput, companyPhone);
     await this.page.fill(this.companyStreetInput, companyStreet + random);
     await this.page.fill(this.companySuiteInput, companySuite);
@@ -94,9 +94,9 @@ exports.registerPage = class registerPage {
   }
 
   async fillAdminDetails(AdminFirtName, AdminMiddleName, AdminLastName, AdminEmail, AdminPhone, Password, ConfirmPaswword, AdminStreet, AdminApartment, AdminCity, AdminState, AdminZipcode, AdminCountry) {
-    const random = this.fourDigit()
+    const random = this.digitgenerator()
     if (AdminPhone == "") {
-      AdminPhone = random+random+random;
+      AdminPhone = this.digitgenerator(10);
     }
     if (AdminZipcode == "") {
       AdminZipcode = random;
@@ -104,7 +104,7 @@ exports.registerPage = class registerPage {
     await this.page.fill(this.AdminFirtNameInput, AdminFirtName + random);
     await this.page.fill(this.AdminMiddleNameInput, AdminMiddleName);
     await this.page.fill(this.AdminLastNameInput, AdminLastName + random);
-    await this.page.fill(this.AdminEmailInput, random + AdminEmail);
+    await this.page.fill(this.AdminEmailInput, "user" + random + AdminEmail);
     await this.page.fill(this.AdminPhoneInput, AdminPhone);
     await this.page.fill(this.PasswordInput, Password);
     await this.page.fill(this.ConfirmPaswwordInput, ConfirmPaswword);
@@ -121,7 +121,13 @@ exports.registerPage = class registerPage {
     await this.page.waitForSelector(`//h1[normalize-space()='` + pageName + `']`)
   }
 
-  fourDigit() {
+  digitgenerator(disit = 4) {
+    if (disit == 4) {
+      return (Math.floor(1000 + Math.random() * 9000)).toString();
+    }
+    else {
+      return "98"+(Math.floor(10000000 + Math.random() * 90000000)).toString();
+    }
     return (Math.floor(1000 + Math.random() * 9000)).toString();
   }
 

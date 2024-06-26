@@ -45,8 +45,10 @@
     },
     "invalidCompanyDetails":{
         "Name": "Company",
-        "Email": "email",
-        "Phone": "phone",
+        "Email1": "email ",
+        "Email2": "@email.com",
+        "Phone1": "phone",
+        "Phone2": "702470247024",
         "Street": "Address",
         "City": "Add",
         "State": "Add",
@@ -56,7 +58,7 @@
     },
     "validCompanyDetails":{
         "Name": "Company ",
-        "Email": "@email.com",
+        "Email": "@velorona.com",
         "Phone": "",
         "Street": "Street ",
         "City": "City ",
@@ -68,8 +70,10 @@
     "invalidAdminDetails":{
         "FirstName": "Company ",
         "LastName": "Last ",
-        "Email": "email ",
-        "Phone": "phone ",
+        "Email1": "email ",
+        "Email2": "@email.com",
+        "Phone1": "phone",
+        "Phone2": "702470247024",
         "Password": "Pd",
         "ConfirmPassword": "P@$$Rd",
         "Street": "Address ",
@@ -81,7 +85,7 @@
     "validAdminDetails":{
         "FirstName": "First ",
         "LastName": "Last ",
-        "Email": "@email.com",
+        "Email": "@velorona.com",
         "Phone": "",
         "Password": "",
         "ConfirmPassword": "",
