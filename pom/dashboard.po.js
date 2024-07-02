@@ -684,34 +684,35 @@ exports.dashboardPage = class dashboardPage {
 
     // archivedCount = await this.allTabsSum("Archived", "None");
     await this.page.click(this.archivedTab)
-    archivedCount = await this.onlyForNow("Archived", "None");
-    console.log("Archived Done");
+    // archivedCount = await this.onlyForNow("Archived", "None");
+    archivedCount = await this.allTabsSum("Archived", "None");
+    // console.log("Archived Done");
     await this.page.waitForTimeout(1000);
     await this.page.click(this.allTab)
-    // totalCount = await this.allTabsSum("All", "None");
-    totalCount = await this.onlyForNow("All", "None");
-    console.log("Total Done");
+    totalCount = await this.allTabsSum("All", "None");
+    // totalCount = await this.onlyForNow("All", "None");
+    // console.log("Total Done");
     await this.page.waitForTimeout(1000);
-    // draftCount = await this.allTabsSum("All", "Draft");
-    draftCount = await this.onlyForNow("All", "Draft");
-    console.log("Draft Done");
+    draftCount = await this.allTabsSum("All", "Draft");
+    // draftCount = await this.onlyForNow("All", "Draft");
+    // console.log("Draft Done");
     await this.page.waitForTimeout(1000);
-    // pendingCount = await this.allTabsSum("All", "Pending");
-    pendingCount = await this.onlyForNow("All", "Pending");
-    console.log("Pending Done");
+    pendingCount = await this.allTabsSum("All", "Pending");
+    // pendingCount = await this.onlyForNow("All", "Pending");
+    // console.log("Pending Done");
     await this.page.waitForTimeout(1000);
-    // overdueCount = await this.allTabsSum("All", "Overdue");
-    overdueCount = await this.onlyForNow("All", "Overdue");
-    console.log("Overdue Done");
+    overdueCount = await this.allTabsSum("All", "Overdue");
+    // overdueCount = await this.onlyForNow("All", "Overdue");
+    // console.log("Overdue Done");
     await this.page.waitForTimeout(1000);
-    // paidCount = await this.allTabsSum("All", "Paid");
-    paidCount = await this.onlyForNow("All", "Paid");
-    console.log("Paid Done");
+    paidCount = await this.allTabsSum("All", "Paid");
+    // paidCount = await this.onlyForNow("All", "Paid");
+    // console.log("Paid Done");
     await this.page.waitForTimeout(1000);
-    // incompleteCount = await this.allTabsSum("All", "Incomplete");  
-    incompleteCount = await this.onlyForNow("All", "Incomplete");  
-    console.log("Incomplete Done");
-    console.log("All Done");
+    incompleteCount = await this.allTabsSum("All", "Incomplete");  
+    // incompleteCount = await this.onlyForNow("All", "Incomplete");  
+    // console.log("Incomplete Done");
+    // console.log("All Done");
     // await this.page.goto('/');
 
     const result = {
@@ -729,9 +730,6 @@ exports.dashboardPage = class dashboardPage {
   async allTabsSum(tabName, fieldValue) {
     let allTab = `//button[contains(., '` + tabName + `')]`
 
-
-    await this.page.click(this.menuInvoices);
-    await this.page.click(this.subMenuInvoicesClient);
     await this.page.click(this.menuInvoices);
     await this.page.click(this.subMenuInvoicesGeneral);
     await this.page.waitForSelector(`//h4[normalize-space()='All General Invoices']`)

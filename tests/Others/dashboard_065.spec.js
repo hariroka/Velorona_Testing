@@ -17,8 +17,8 @@ test.beforeEach(async ({ page }) => {
     await page.goto('/');
 });
 
-test.describe('Verify data of the User (By Role) Submodule within User Page', () => {
-    test('dashboard_028 Payroll Admin', async ({ page }) => {
+test.describe('Verify data of the User (By Status) Submodule within User Page', () => {
+    test('dashboard_065 Payroll Admin', async ({ page }) => {
         const login = new loginPage(page);
         await login.login(loginData.valid.payroll.email, loginData.valid.payroll.password);
         await login.select("Welcome");
@@ -26,11 +26,11 @@ test.describe('Verify data of the User (By Role) Submodule within User Page', ()
         // await page.click(dashboard.companySwitchButton);
         // await page.click(dashboard.nextCompany);
         await login.select("Welcome");
-        const actualUserRoles = await dashboard.userRolesDataCounter();
+        const actualUserStatus = await dashboard.userStatusDataCounter();
         await page.click(dashboard.menuDashboard);
         await page.click(dashboard.subMenuDashboardUsers);
         const adminDashboard = new adminDashboardPage(page);
-        const dashUserRoles = await adminDashboard.userRolesCounter();
-        expect (dashUserRoles).toStrictEqual(actualUserRoles);
+        const dashUserStatus = await adminDashboard.userStatusCounter();
+        expect (dashUserStatus).toStrictEqual(actualUserStatus);
     })
 })

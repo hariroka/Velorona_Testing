@@ -1,12 +1,12 @@
 const { test, expect } = require('@playwright/test');
 
-const loginData = require(`../fixtures/fixture.json`);
-const emailError = require(`../errorMessages/emailErrors.json`);
-const passError = require(`../errorMessages/passErrors.json`);
-const otpError = require(`../errorMessages/otpErrors.json`);
-const { loginPage } = require('../pom/login.po.js');
-const { forgotPassPage } = require('../pom/forgotPass.po.js');
-const { dashboardPage } = require(`../pom/dashboard.po.js`);
+const loginData = require(`../../fixtures/fixture.json`);
+const emailError = require(`../../errorMessages/emailErrors.json`);
+const passError = require(`../../errorMessages/passErrors.json`);
+const otpError = require(`../../errorMessages/otpErrors.json`);
+const { loginPage } = require('../../pom/login.po.js');
+const { forgotPassPage } = require('../../pom/forgotPass.po.js');
+const { dashboardPage } = require(`../../pom/dashboard.po.js`);
 
 test.beforeEach(async ({ page }) => {
     await page.goto('/');
@@ -134,7 +134,7 @@ test.describe('Login_012 Verify Password criteria and matching (Forgot Password)
 })
 
 test.describe('Login_013 Reset Password Successful (Forgot Password)', () => {
-    test.only('Login_013 Reset Password Success', async ({ page }) => {
+    test('Login_013 Reset Password Success', async ({ page }) => {
         const login = new loginPage(page);
         await login.forgotPass();
         const forgot = new forgotPassPage(page);

@@ -33,7 +33,7 @@ test.describe('Verify data of the Timesheets Submodule within General Page', () 
         const dashtimesheets = await employeeDashboard.timesheetDataCounter();
         expect (dashtimesheets).toStrictEqual(actualtimesheets);
     })
-    test('dashboard_0100 Employee - Check-Ins', async ({ page }) => {
+    test('dashboard_100 Employee - Check-Ins', async ({ page }) => {
         const login = new loginPage(page);
         await login.login(loginData.valid.employee.email, loginData.valid.employee.password);
         await login.select("Welcome");
