@@ -12,7 +12,7 @@ const { employeeDashboardPage } = require('../pom/employeeDashboard.po.js');
 const { adminDashboardPage } = require('../pom/adminDashboard.po.js');
 
 test.beforeEach(async ({ page }) => {
-    await page.goto('/');
+    // await page.goto('/');
     await page.goto('/');
 });
 
