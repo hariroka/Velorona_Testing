@@ -24,9 +24,9 @@ exports.loginPage = class loginPage {
       await this.page.fill(`//body[1]/div[1]/main[1]/div[1]/div[1]/form[1]/div[1]/div[2]/div[1]/div[1]/input[1]`, username);
     }
     if (password != '') {
-      await this.page.fill(this.passwordInput, password);
+      await this.page.fill(`//body[1]/div[1]/main[1]/div[1]/div[1]/form[1]/div[1]/div[2]/div[2]/div[1]/input[1]`, password);
     }
-    await this.page.click(this.loginButton);
+    await this.page.click(`//body[1]/div[1]/main[1]/div[1]/div[1]/form[1]/div[1]/div[2]/button[1]`);
   }
 
   async otpWrite(otp) {
