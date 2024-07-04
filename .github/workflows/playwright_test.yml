@@ -33,7 +33,7 @@ jobs:
         run: npx playwright install chromium
 
       - name: Run Playwright tests
-        run: npx playwright test --workers=2  # Run Playwright tests and generate JSON report
+        run: npx playwright test --headed --workers=2  # Run Playwright tests and generate JSON report
 
       - name: Archive test results
         if: failure()  # Upload the Playwright report artifact only if the job fails
