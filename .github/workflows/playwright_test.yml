@@ -26,8 +26,11 @@ jobs:
       - name: Install dependencies
         run: npm ci  # Use npm ci to install dependencies, ensuring a clean state by removing node_modules before installing
 
-      - name: Install Playwright Browsers
+      - name: Install Playwright
         run: npx playwright install --with-deps  # Install Playwright and its dependencies along with necessary browsers
+
+      - name: Install Browsers
+        run: npx playwright install chromium
 
       - name: Run Playwright tests
         run: npx playwright test --workers=2  # Run Playwright tests and generate JSON report
