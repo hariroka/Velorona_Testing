@@ -11,7 +11,7 @@ on:
 
 jobs:
   test:
-    timeout-minutes: 160  # Set a timeout for the job of 60 minutes
+    timeout-minutes: 160  # Set a timeout for the job of 160 minutes
     runs-on: ubuntu-latest  # Use the latest Ubuntu runner for the job
 
     steps:
@@ -30,7 +30,7 @@ jobs:
         run: npx playwright install --with-deps  # Install Playwright and its dependencies along with necessary browsers
 
       - name: Run Playwright tests
-        run: npx playwright test --workers=1  # Run Playwright tests and generate JSON report
+        run: npx playwright test --workers=2  # Run Playwright tests and generate JSON report
 
       - name: Archive test results
         if: failure()  # Upload the Playwright report artifact only if the job fails
