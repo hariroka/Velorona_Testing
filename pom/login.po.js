@@ -21,7 +21,7 @@ exports.loginPage = class loginPage {
   async login(username, password) {
     this.select("User Login", "h4")
     if (username != '') {
-      await this.page.fill(this.usernameInput, username);
+      await this.page.fill(`//body[1]/div[1]/main[1]/div[1]/div[1]/form[1]/div[1]/div[2]/div[1]/div[1]/input[1]`, username);
     }
     if (password != '') {
       await this.page.fill(this.passwordInput, password);
