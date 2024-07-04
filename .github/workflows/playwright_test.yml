@@ -6,37 +6,31 @@ on:
   pull_request:
     branches: [ master ]  # Trigger the workflow on pull request to main branch
   schedule:
-    - cron: '15 9 * * 1'  # Trigger the workflow at 3 PM UTC from Monday to Friday
+    - cron: '15 9 * * 1-5'  # Trigger the workflow at 3 PM UTC from Monday to Friday
   workflow_dispatch:  # Allow manual triggering of the workflow
 
 jobs:
   test:
-    timeout-minutes: 160  # Set a timeout for the job of 160 minutes
+    timeout-minutes: 60  # Set a timeout for the job of 60 minutes
     runs-on: ubuntu-latest  # Use the latest Ubuntu runner for the job
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4  # Use the latest version of the checkout action to check out the repository code
 
-      # - name: Install xvfb
-      #   run: sudo apt-get install xvfb
-
       - name: Set up Node.js
         uses: actions/setup-node@v4  # Use the latest version of the setup-node action to set up Node.js
-        # with:
-        #   node-version: '20.10.0'  # Specify the Node.js version to use
+        with:
+          node-version: '20.10.0'  # Specify the Node.js version to use
 
       - name: Install dependencies
         run: npm ci  # Use npm ci to install dependencies, ensuring a clean state by removing node_modules before installing
 
-      - name: Install Playwright
+      - name: Install Playwright Browsers
         run: npx playwright install --with-deps  # Install Playwright and its dependencies along with necessary browsers
 
-      # - name: Install Browsers
-      #   run: npx playwright install chromium
-
       - name: Run Playwright tests
-        run: npx playwright test --workers=2  # Run Playwright tests and generate JSON report
+        run: npx playwright test --workers=1  # Run Playwright tests and generate JSON report
 
       - name: Archive test results
         if: failure()  # Upload the Playwright report artifact only if the job fails
