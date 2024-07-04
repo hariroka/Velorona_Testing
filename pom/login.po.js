@@ -19,6 +19,7 @@ exports.loginPage = class loginPage {
   }
 
   async login(username, password) {
+    this.select("User Login", "h4")
     if (username != '') {
       await this.page.fill(this.usernameInput, username);
     }
@@ -41,8 +42,13 @@ exports.loginPage = class loginPage {
     await this.page.click(this.otpLoginButton);
   }
 
-  async select(message) {
-    await this.page.waitForSelector(`//*[contains(text(), '` + message + `')]`);
+  async select(message, heading = '') {
+    if (heading == '') {
+      await this.page.waitForSelector(`//*[contains(text(), '` + message + `')]`);
+    }
+    else {
+      await this.page.waitForSelector(`//h4[normalize-space()='` + message + `']`);
+    }
   }
 
   async forgotPass() {
