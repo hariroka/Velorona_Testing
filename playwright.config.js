@@ -84,6 +84,6 @@ module.exports = defineConfig({
   //   reuseExistingServer: !process.env.CI,
   // },
   // Other configurations
-  timeout: 180000, // Set timeout to 3 Minutes
+  timeout: 50000, // Set timeout to 3 Minutes
 });
 
