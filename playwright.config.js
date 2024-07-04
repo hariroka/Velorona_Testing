@@ -12,7 +12,8 @@ const { defineConfig, devices } = require('@playwright/test');
  */
 module.exports = defineConfig({
   // testDir: './tests',
-  testDir: './tests/Dashboard',
+  // testDir: './tests/Dashboard',
+  testDir: './tests/Others',
   // testDir: './tests/Login',
   /* Run tests in files in parallel */
   fullyParallel: true,
@@ -32,6 +33,10 @@ module.exports = defineConfig({
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
+    // For screenshot
+    screenshot: "only-on-failure",
+    // for screen record
+    video: "retain-on-failure",
   },
 
   /* Configure projects for major browsers */
@@ -79,6 +84,6 @@ module.exports = defineConfig({
   //   reuseExistingServer: !process.env.CI,
   // },
   // Other configurations
-  timeout: 300000, // Set timeout to 50 seconds
+  timeout: 100000, // Set timeout to 50 seconds
 });
 

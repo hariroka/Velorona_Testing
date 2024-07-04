@@ -20,6 +20,6 @@ test.describe('Verify Dashboard Page', () => {
     test('dashboard_001 Company Admin', async ({ page }) => {
         const login = new loginPage(page);
         await login.login(loginData.valid.admin.email, loginData.valid.admin.password);
-        await login.select("You are a company admin");
+        await login.select("You are a Company admin");
     })
 })

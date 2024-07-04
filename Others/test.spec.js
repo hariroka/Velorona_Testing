@@ -1,12 +1,12 @@
 const { test, expect } = require('@playwright/test');
 
-const loginData = require(`../../fixtures/fixture.json`);
-const emailError = require(`../../errorMessages/emailErrors.json`);
-const passError = require(`../../errorMessages/passErrors.json`);
-const otpError = require(`../../errorMessages/otpErrors.json`);
-const { loginPage } = require('../../pom/login.po.js');
-const { forgotPassPage } = require('../../pom/forgotPass.po.js');
-const { registerPage } = require('../../pom/register.po.js');
+const loginData = require(`../fixtures/fixture.json`);
+const emailError = require(`../errorMessages/emailErrors.json`);
+const passError = require(`../errorMessages/passErrors.json`);
+const otpError = require(`../errorMessages/otpErrors.json`);
+const { loginPage } = require('../pom/login.po.js');
+const { forgotPassPage } = require('../pom/forgotPass.po.js');
+const { registerPage } = require('../pom/register.po.js');
 
 test.beforeEach(async ({ page }) => {
     await page.goto('/');
