@@ -18,6 +18,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4  # Use the latest version of the checkout action to check out the repository code
 
+      - name: Install xvfb
+        run: sudo apt-get install xvfb
+
       - name: Set up Node.js
         uses: actions/setup-node@v4  # Use the latest version of the setup-node action to set up Node.js
         with:
@@ -33,7 +36,7 @@ jobs:
         run: npx playwright install chromium
 
       - name: Run Playwright tests
-        run: npx playwright test --headed --workers=2  # Run Playwright tests and generate JSON report
+        run: xvfb-run npx playwright test --headed --workers=2  # Run Playwright tests and generate JSON report
 
       - name: Archive test results
         if: failure()  # Upload the Playwright report artifact only if the job fails
