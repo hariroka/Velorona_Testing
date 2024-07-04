@@ -345,8 +345,18 @@ exports.dashboardPage = class dashboardPage {
     await this.page.click(this.menuTimesheets);
     let totalCount, openCount, submittedCount, approvedCount, rejectedCount, archivedCount;
 
-    await this.page.click(this.rejectedTab);
-    await this.page.waitForTimeout(1000);
+    await this.select("All Timesheets");
+      if (await this.page.isVisible("No Data")) {
+        await this.select("No Data");
+        totalCount = "0";
+        totalCount = await this.count(totalCount);
+      }
+      else{
+        await this.select("Rows per page:");
+        await this.page.waitForTimeout(1000);
+        totalCount = await this.page.locator(this.timesheetTotal).textContent();
+        totalCount = await this.count(totalCount);
+      }
     await this.page.click(this.openTab);
     await this.page.waitForTimeout(1000);
     await this.select("All Timesheets");
@@ -423,23 +433,6 @@ exports.dashboardPage = class dashboardPage {
         await this.page.waitForTimeout(1000);
         archivedCount = await this.page.locator(this.timesheetTotal).textContent();
         archivedCount = await this.count(archivedCount);
-      }
-
-      await this.page.click(this.openTab);
-      await this.page.waitForTimeout(1000);
-      await this.page.click(this.allTab);
-      await this.page.waitForTimeout(1000);
-      await this.select("All Timesheets");
-      if (await this.page.isVisible("No Data")) {
-        await this.select("No Data");
-        totalCount = "0";
-        totalCount = await this.count(totalCount);
-      }
-      else{
-        await this.select("Rows per page:");
-        await this.page.waitForTimeout(1000);
-        totalCount = await this.page.locator(this.timesheetTotal).textContent();
-        totalCount = await this.count(totalCount);
       }
   
       const result = {
