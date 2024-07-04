@@ -1,10 +1,10 @@
 const { test, expect } = require('@playwright/test');
-const { landingPage } = require('../../pom/landing.po.js');
-const { registerPage } = require('../../pom/register.po.js');
-const { loginPage } = require('../../pom/login.po.js');
-const data = require(`../../fixtures/fixture.json`);
-const registerError = require(`../../errorMessages/registerErrors.json`);
-const passError = require(`../../errorMessages/passErrors.json`);
+const { landingPage } = require('../pom/landing.po.js');
+const { registerPage } = require('../pom/register.po.js');
+const { loginPage } = require('../pom/login.po.js');
+const data = require(`../fixtures/fixture.json`);
+const registerError = require(`../errorMessages/registerErrors.json`);
+const passError = require(`../errorMessages/passErrors.json`);
 
 const companyRegisterFields = ["Company Name", "Phone", "Street", "City", "State", "Zip", "Country"]
 const adminRegisterFields = ["First Name", "Last Name", "Phone", "Confirm Password", "Street", "City", "State", "Zip", "Country"]
