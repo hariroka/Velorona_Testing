@@ -32,7 +32,7 @@ module.exports = defineConfig({
     baseURL: 'https://app-staging.velorona.net/',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    trace: 'on-first-retry',
+    trace: 'retain-on-failure',
     // For screenshot
     screenshot: "only-on-failure",
     // for screen record

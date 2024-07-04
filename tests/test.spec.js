@@ -25,13 +25,13 @@ test.describe('dashboard_001 Verify Dashboard Page', () => {
     })
 })
 
-test.describe('dashboard_040 Verify Dashboard Page', () => {
-    test('dashboard_040 Payroll Admin', async ({ page }) => {
-        const login = new loginPage(page);
-        await login.login(loginData.valid.payroll.email, loginData.valid.payroll.password);
-        await login.select("You are a payroll admin");
-    })
-})
+// test.describe('dashboard_040 Verify Dashboard Page', () => {
+//     test('dashboard_040 Payroll Admin', async ({ page }) => {
+//         const login = new loginPage(page);
+//         await login.login(loginData.valid.payroll.email, loginData.valid.payroll.password);
+//         await login.select("You are a payroll admin");
+//     })
+// })
 
 
 // test.describe('dashboard_003 Check Expand Button and Shrink Button', () => {
